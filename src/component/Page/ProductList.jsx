@@ -279,7 +279,7 @@ const ProductList = () => {
   }, [isDragging]);
 
 
-  // Filter component that matches the design in the image
+  
   const FilterSidebar = () => {
     return (
       <div className="w-full md:w-64 flex-shrink-0 bg-white rounded-lg shadow-sm overflow-hidden ">
