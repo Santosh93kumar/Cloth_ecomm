@@ -5,6 +5,13 @@ import im2 from "../Image/product1.png";
 import im3 from "../Image/product2.png";
 import im4 from "../Image/product3.png";
 import im5 from "../Image/product4.png";
+import f1 from "../Image/Frame 24.png"
+import f2 from "../Image/Frame 25.png"
+import f3 from "../Image/Frame 26.png"
+import f4 from "../Image/Frame 27.png"
+import msg from "../Image/Icon.png"
+import cart from "../Image/cart.png"
+import { ArrowRight } from "lucide-react";
 
 const ProductDetail = () => {
     const [selectedColor, setSelectedColor] = useState('black');
@@ -99,146 +106,147 @@ const ProductDetail = () => {
     };
     return (
         <div className="bg-gray-50 min-h-screen">
-            
-            <main  className='container mx-auto p-4'>
-          
-<div className="grid grid-cols-6 gap-8">
-    
-    {/* Product Images (1 fraction) */}
-    <div className='bg-gray-50'>
-    <div className="grid grid-rows-5 gap-2 m-10 ">
-        {[1, 2, 3, 4].map((i) => (
-            <div key={i} className={`border  w-24 h-24 rounded-lg overflow-hidden ${i === 1 ? 'border-purple-500' : ''}`}>
-                <img
-                    src={im1}
-                    alt={`Raven Hoodie view ${i}`}
-                    className="w-full h-full object-cover"
-                />
-            </div>
-        ))}
-    </div>
-    </div>
 
-    {/* Main Product Image (2 fractions) */}
-    <div className="col-span-2 flex flex-col gap-4">
-        <div className="bg-gray-100 rounded-lg overflow-hidden">
-            <img
-                src={im1}
-                alt="Raven Hoodie"
-                className="w-full h-full object-cover"
-            />
-        </div>
-    </div>
+            <main className='container mx-auto p-4'>
 
-    {/* Product Details (3 fractions) */}
-    <div className="col-span-3">
-    <nav className="mb-4 text-sm">
-        <ol className="flex items-center">
-          <li className="mr-2">
-            <a href="#" className="text-gray-500 hover:text-gray-700">Shop</a>
-          </li>
-          <li className="before:content-['>'] before:mx-2 before:text-gray-500">
-            <span className="text-gray-500 font-semibold">Woman</span>
-          </li>
-          <li className="before:content-['>'] before:mx-2 before:text-gray-500">
-            <span className="text-gray-500 font-semibold">Top</span>
-          </li>
-        </ol>
-      </nav>
+                <div className="grid grid-cols-6 gap-8">
 
-        <h1 className="text-2xl font-semibold mb-2">Raven Hoodie With Black colored Design</h1>
+                    {/* Product Images (1 fraction) */}
+                    <div className='bg-gray-50'>
+                        <div className="grid grid-rows-5 gap-2 m-10 ">
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className={`border  w-24 h-24 rounded-lg overflow-hidden ${i === 1 ? 'border-purple-500' : ''}`}>
+                                    <img
+                                        src={im1}
+                                        alt={`Raven Hoodie view ${i}`}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
-        {/* Ratings */}
-        <div className="flex items-center gap-2 mb-4">
-            <div className="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                ))}
-            </div>
-            <span className="text-gray-500 text-sm">(121 reviews)</span>
-        </div>
+                    {/* Main Product Image (2 fractions) */}
+                    <div className="col-span-2 flex flex-col gap-4">
+                        <div className="bg-gray-100 rounded-lg overflow-hidden">
+                            <img
+                                src={im1}
+                                alt="Raven Hoodie"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
 
-        {/* Price */}
-        <div className="flex items-center gap-4 mb-6">
-            <span className="font-bold text-lg">$59.00</span>
-            <span className="line-through text-gray-400">$69.00</span>
-            <span className="bg-red-100 text-red-500 px-2 py-1 text-xs rounded">-15%</span>
-        </div>
+                    {/* Product Details (3 fractions) */}
+                    <div className="col-span-3 p-5">
+                        <nav className="mb-4 text-sm">
+                            <ol className="flex items-center">
+                                <li className="mr-2">
+                                    <a href="#" className="text-gray-500 hover:text-gray-700">Shop</a>
+                                </li>
+                                <li className="before:content-['>'] before:mx-2 before:text-gray-500">
+                                    <span className="text-gray-500 font-semibold">Woman</span>
+                                </li>
+                                <li className="before:content-['>'] before:mx-2 before:text-gray-500">
+                                    <span className="text-gray-500 font-semibold">Top</span>
+                                </li>
+                            </ol>
+                        </nav>
 
-        {/* Size Selection */}
-        <div className="mb-6">
-            <div className="flex justify-between mb-2">
-                <span className="text-gray-700">Select Size</span>
-                <a href="#" className="text-purple-600 text-sm">Size Guide</a>
-            </div>
-            <div className="flex flex-wrap gap-2">
-                {sizes.map((size) => (
-                    <button
-                        key={size}
-                        className={`w-10 h-10 rounded-full flex items-center justify-center border ${selectedSize === size ? 'bg-black text-white' : 'bg-white text-black'}`}
-                        onClick={() => setSelectedSize(size)}
-                    >
-                        {size}
-                    </button>
-                ))}
-            </div>
-        </div>
+                        <h1 className="text-2xl font-semibold mb-2">Raven Hoodie With Black Colored Design</h1>
 
-        {/* Color Selection */}
-        <div className="mb-6">
-            <p className="text-gray-700 mb-2">Colors available</p>
-            <div className="flex gap-2">
-                {colors.map((color) => (
-                    <button
-                        key={color.name}
-                        className={`w-8 h-8 rounded-full ${selectedColor === color.name ? 'ring-2 ring-offset-2 ring-gray-400' : ''}`}
-                        style={{ backgroundColor: color.value }}
-                        onClick={() => setSelectedColor(color.name)}
-                        aria-label={`Select ${color.name} color`}
-                    />
-                ))}
-            </div>
-        </div>
+                        {/* Ratings */}
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="flex">
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                    <Star key={star} className="h-5 w-5 fill-yellow-300 text-yellow-300" />
+                                ))}
+                            </div>
+                            <span className="text-gray-400 m-2 font-semibold">3.5</span>
+                            <span className="text-gray-400 m-2 font-semibold flex items-center space-x-2">
+  <img src={msg} alt="msg" className="w-5 h-5" />
+  <p>120 comment</p>
+</span>
 
-        {/* Add to Cart */}
-        <div className="flex gap-4 mb-6">
-            <button className="flex-1/2 bg-purple-600 text-white py-3 rounded-md font-medium">
-                ADD TO CART
-            </button>
-            <button className=" flex-1/2 border border-gray-300 px-4 py-3 rounded-md">
-                ${59.99}
-            </button>
-        </div>
+                        </div>
 
-        {/* Additional Info */}
-        <div className="space-y-4 border-t pt-4">
-            <div className="flex items-center gap-2">
-                <div className="w-6 h-6 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <span className="text-sm text-gray-600">Secure payment</span>
-            </div>
-            <div className="flex items-center gap-2">
-                <div className="w-6 h-6 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                </div>
-                <span className="text-sm text-gray-600">Shipping & Delivery</span>
-            </div>
-            <div className="flex items-center gap-2">
-                <div className="w-6 h-6 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <span className="text-sm text-gray-600">Free Shipping & Returns</span>
-            </div>
-        </div>
-    </div>
+                        {/* Size Selection */}
+                        <div className="mb-6">
+                            <div className="mb-2 flex items-center">
+                                <span className="text-gray-700">Select Size</span>
+                                <div className="flex items-center ml-5">
+                                    <a href="#" className="text-purple-600">Size Guide</a>
+                                    <ArrowRight className="w-5 h-5 text-gray-300 ml-1" />
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {sizes.map((size) => (
+                                    <button
+                                        key={size}
+                                        className={`w-10 h-10 rounded-lg flex items-center justify-center border border-gray-300 ${selectedSize === size ? 'bg-black text-white' : 'bg-white text-black'}`}
+                                        onClick={() => setSelectedSize(size)}
+                                    >
+                                        {size}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Color Selection */}
+                        <div className="mb-6">
+                            <p className="text-gray-700 mb-2">Colors available</p>
+                            <div className="flex gap-2">
+                                {colors.map((color) => (
+                                    <button
+                                        key={color.name}
+                                        className={`w-6 h-6 rounded-full ${selectedColor === color.name ? 'ring-2 ring-offset-3 ring-gray-400' : ''}`}
+                                        style={{ backgroundColor: color.value }}
+                                        onClick={() => setSelectedColor(color.name)}
+                                        aria-label={`Select ${color.name} color`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Add to Cart */}
+                        <div className="flex gap-4 mb-6 w-xl">
+  <button className="flex-3/4 bg-purple-600 text-white py-3 rounded-md font-medium flex items-center justify-center space-x-2">
+    <img src={cart} alt="cart" className="w-5 h-5" />
+    <span>ADD TO CART</span>
+  </button>
+  <button className="flex-1/4 border border-gray-300 px-6 py-3 rounded-md text-gray-700 font-medium">
+    ${59.99}
+  </button>
 </div>
+
+                        {/* Additional Info */}
+                        <div className="space-y-4 border-t border-gray-300 pt-4">
+                            <div className="grid grid-cols-2 items-center gap-2">
+                                <div className=" flex items-center justify-start">
+                                    <img src={f1} alt="" className="h-10 w-10" />
+
+                                    <span className="text-sm text-gray-600">Secure payment</span>
+                                </div>
+                                <div className=" flex items-center justify-start">
+                                    <img src={f2} alt="" className="h-10 w-10" />
+
+                                    <span className="text-sm text-gray-600">Size & Fit</span>
+                                </div>
+                                <div className=" flex items-center justify-start">
+                                    <img src={f3} alt="" className="h-10 w-10" />
+
+                                    <span className="text-sm text-gray-600">Free Shipping</span>
+                                </div>
+                                <div className=" flex items-center justify-start">
+                                    <img src={f4} alt="" className="h-10 w-10" />
+
+                                    <span className="text-sm text-gray-600">Free Sipping & Returns</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 {/* Product Description */}
                 <div className="mt-12">
@@ -250,96 +258,96 @@ const ProductDetail = () => {
 
 
                     <div className="mx-auto mt-8">
-      
-      
-      {/* Content */}
-      <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-between items-start">
-        {/* Left Column - Description */}
-        <div className="w-full ">
-            {/* Tabs */}
-      <div className=" mb-6">
-        <div className="flex space-x-8">
-          <button 
-            className={`pb-2 relative ${activeTab === 'description' ? 'text-black font-medium border-b-2 border-black' : 'text-gray-500'}`}
-            onClick={() => setActiveTab('description')}
-          >
-            Description
-          </button>
-          <button 
-            className={`pb-2 relative flex items-center ${activeTab === 'comments' ? 'text-black font-medium border-b-2 border-black' : 'text-gray-500'}`}
-            onClick={() => setActiveTab('comments')}
-          >
-            User comments
-            <span className="ml-2 bg-purple-600 text-white text-xs w-4 h-4 rounded-sm flex items-center justify-center">
-              4
-            </span>
-          </button>
-          <button 
-            className={`pb-2 relative flex items-center ${activeTab === 'qa' ? 'text-black font-medium border-b-2 border-black' : 'text-gray-500'}`}
-            onClick={() => setActiveTab('qa')}
-          >
-            Question & Answer
-            <span className="ml-2 bg-gray-800 text-white text-xs w-4 h-4 rounded-sm flex items-center justify-center">
-              1
-            </span>
-          </button>
-        </div>
-      </div>
-          <p className="text-gray-500 text-md mb-6">
-            100% Bio-washed Cotton - makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provides all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.
-          </p>
-          
-          <div className="bg-gray-100 p-4 rounded-lg shadow-md w-full">
-            <table className="w-full border-collapse text-sm">
-              <tbody>
-                <tr className="p-4">
-                  <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Fabric</td>
-                  <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Pattern</td>
-                  <td className="px-4 py-2 font-medium text-gray-700">Fit</td>
-                </tr>
-                <tr className="p-4 border-b border-gray-200">
-                  <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Bio-washed Cotton</td>
-                  <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Printed</td>
-                  <td className="px-4 py-2 text-gray-900 font-semibold">Regular-fit</td>
-                </tr>
-                <tr className="p-4">
-                  <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Neck</td>
-                  <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Sleeve</td>
-                  <td className="px-4 py-2 font-medium text-gray-700">Style</td>
-                </tr>
-                <tr className="p-4">
-                  <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Round Neck</td>
-                  <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Half-sleeves</td>
-                  <td className="px-4 py-2 text-gray-900 font-semibold">Casual Wear</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        
-        {/* Right Column - Video */}
-        <div className="relative rounded-lg overflow-hidden bg-gray-200 aspect-video w-full ">
-          <img 
-            src={im1}
-            alt="Raven Hoodie"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute top-3 right-3 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
-            1:00 M
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <button className="bg-white rounded-full p-3 shadow-md">
-              <Play size={24} className="text-black" />
-            </button>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/50 to-transparent">
-            <p className="text-lg font-medium">Raven Hoodie with black colored design</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+
+
+                        {/* Content */}
+                        <div className="container mx-auto px-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-between items-start">
+                                {/* Left Column - Description */}
+                                <div className="w-full ">
+                                    {/* Tabs */}
+                                    <div className=" mb-6">
+                                        <div className="flex space-x-8">
+                                            <button
+                                                className={`pb-2 relative ${activeTab === 'description' ? 'text-black font-medium border-b-2 border-black' : 'text-gray-500'}`}
+                                                onClick={() => setActiveTab('description')}
+                                            >
+                                                Description
+                                            </button>
+                                            <button
+                                                className={`pb-2 relative flex items-center ${activeTab === 'comments' ? 'text-black font-medium border-b-2 border-black' : 'text-gray-500'}`}
+                                                onClick={() => setActiveTab('comments')}
+                                            >
+                                                User comments
+                                                <span className="ml-2 bg-purple-600 text-white text-xs w-4 h-4 rounded-sm flex items-center justify-center">
+                                                    4
+                                                </span>
+                                            </button>
+                                            <button
+                                                className={`pb-2 relative flex items-center ${activeTab === 'qa' ? 'text-black font-medium border-b-2 border-black' : 'text-gray-500'}`}
+                                                onClick={() => setActiveTab('qa')}
+                                            >
+                                                Question & Answer
+                                                <span className="ml-2 bg-gray-800 text-white text-xs w-4 h-4 rounded-sm flex items-center justify-center">
+                                                    1
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-500 text-md mb-6">
+                                        100% Bio-washed Cotton - makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provides all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.
+                                    </p>
+
+                                    <div className="bg-gray-100 p-4 rounded-lg shadow-md w-full">
+                                        <table className="w-full border-collapse text-sm">
+                                            <tbody>
+                                                <tr className="p-4">
+                                                    <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Fabric</td>
+                                                    <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Pattern</td>
+                                                    <td className="px-4 py-2 font-medium text-gray-700">Fit</td>
+                                                </tr>
+                                                <tr className="p-4 border-b border-gray-200">
+                                                    <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Bio-washed Cotton</td>
+                                                    <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Printed</td>
+                                                    <td className="px-4 py-2 text-gray-900 font-semibold">Regular-fit</td>
+                                                </tr>
+                                                <tr className="p-4">
+                                                    <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Neck</td>
+                                                    <td className="px-4 py-2 font-medium border-r border-gray-200 text-gray-700">Sleeve</td>
+                                                    <td className="px-4 py-2 font-medium text-gray-700">Style</td>
+                                                </tr>
+                                                <tr className="p-4">
+                                                    <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Round Neck</td>
+                                                    <td className="px-4 py-2 text-gray-900 border-r border-gray-200 font-semibold">Half-sleeves</td>
+                                                    <td className="px-4 py-2 text-gray-900 font-semibold">Casual Wear</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* Right Column - Video */}
+                                <div className="relative rounded-lg overflow-hidden bg-gray-200 aspect-video w-full ">
+                                    <img
+                                        src={im1}
+                                        alt="Raven Hoodie"
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute top-3 right-3 text-white text-sm bg-black bg-opacity-50 px-2 py-1 rounded">
+                                        1:00 M
+                                    </div>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <button className="bg-white rounded-full p-3 shadow-md">
+                                            <Play size={24} className="text-black" />
+                                        </button>
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/50 to-transparent">
+                                        <p className="text-lg font-medium">Raven Hoodie with black colored design</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Similar Products */}
