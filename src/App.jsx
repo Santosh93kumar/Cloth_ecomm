@@ -6,6 +6,8 @@ import HeroSection from './component/HeroSection'
 import ProductList from './component/Page/ProductList'
 import ProductDetail from './component/Page/ProductDetail'
 import ShoppingCart from './component/Page/ShoppingCart'
+import Confirmed from './component/Page/Confirmed'
+import AddressForm from './component/Page/AddressForm'
 function App() {
   const router = createBrowserRouter([
     {
@@ -27,6 +29,14 @@ function App() {
         {
           path: "/cart",
           element: <ShoppingCart/>,
+        },
+        {
+          path: "/confirmed",
+          element: <Confirmed/>,
+        },
+        {
+          path: "/address",
+          element: <AddressForm/>,
         }
       
       ]

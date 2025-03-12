@@ -11,7 +11,8 @@ import f3 from "../Image/Frame 26.png"
 import f4 from "../Image/Frame 27.png"
 import msg from "../Image/Icon.png"
 import cart from "../Image/cart.png"
-import { ArrowRight } from "lucide-react";
+
+import { ChevronUp, ChevronDown,ArrowRight } from 'lucide-react';
 
 const ProductDetail = () => {
     const [selectedColor, setSelectedColor] = useState('black');
@@ -104,40 +105,88 @@ const ProductDetail = () => {
             setFavorites([...favorites, id]);
         }
     };
+    const [selectedImage, setSelectedImage] = useState(0);
+    const [startIndex, setStartIndex] = useState(0);
+    const displayCount = 3;
+  
+      
+      // Product images array
+      const productImages = [im1, im2, im3, im1,im3,];
+      const handlePrev = () => {
+        if (startIndex > 0) {
+          setStartIndex(startIndex - 1);
+        }
+      };
+      
+      // Handle next button click
+      const handleNext = () => {
+        if (startIndex + displayCount < productImages.length) {
+          setStartIndex(startIndex + 1);
+        }
+      };
+
+      const visibleThumbnails = productImages.slice(startIndex, startIndex + displayCount);
+    
     return (
         <div className="bg-gray-50 min-h-screen">
 
-            <main className='container mx-auto p-4'>
+            <main className='container mx-auto '>
 
                 <div className="grid grid-cols-6 gap-8">
 
-                    {/* Product Images (1 fraction) */}
-                    <div className='bg-gray-50'>
-                        <div className="grid grid-rows-5 gap-2 m-10 ">
-                            {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className={`border  w-24 h-24 rounded-lg overflow-hidden ${i === 1 ? 'border-purple-500' : ''}`}>
-                                    <img
-                                        src={im1}
-                                        alt={`Raven Hoodie view ${i}`}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                
+  <div className="flex flex-col items-center space-y-4 mt-30">
+    {/* Thumbnail images */}
+    <div className="flex flex-col items-center space-y-4 mt-auto">
+    {visibleThumbnails.map((image, index) => {
+              const actualIndex = startIndex + index;
+              return (
+                <div 
+                  key={actualIndex} 
+                  className={`w-14 h-14 rounded-lg overflow-hidden border ${selectedImage === actualIndex ? 'border-purple-500' : 'border-gray-200'} cursor-pointer`}
+                  onClick={() => setSelectedImage(actualIndex)}
+                >
+                  <img
+                    src={image}
+                    alt={`Product view ${actualIndex + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              );
+            })}
+          {/* Navigation arrows */}
+          <div className="mt-4 flex flex-col items-center space-y-2">
+          <button 
+            className={`w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center ${startIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-300'}`}
+            onClick={handlePrev}
+            disabled={startIndex === 0}
+          >
+            <ChevronUp className="w-5 h-5 text-gray-600" />
+          </button>
+            <button 
+            className={`w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center ${startIndex + displayCount >= productImages.length ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-300'}`}
+            onClick={handleNext}
+            disabled={startIndex + displayCount >= productImages.length}
+          >
+            <ChevronDown className="w-5 h-5 text-gray-600" />
+          </button>
+          </div>
+        </div>
+  </div>
 
-                    {/* Main Product Image (2 fractions) */}
+
+                    {/* Main Product Image  */}
                     <div className="col-span-2 flex flex-col gap-4">
-                        <div className="bg-gray-100 rounded-lg overflow-hidden">
-                            <img
-                                src={im1}
-                                alt="Raven Hoodie"
-                                className="w-full h-full object-cover"
-                            />
+                        <div className=" rounded-lg overflow-hidden">
+                        <img
+            src={productImages[selectedImage]}
+            alt={`Product full view ${selectedImage + 1}`}
+            className="w-full h-full object-contain"
+          />
                         </div>
                     </div>
 
-                    {/* Product Details (3 fractions) */}
+                    {/* Product Details  */}
                     <div className="col-span-3 p-5">
                         <nav className="mb-4 text-sm">
                             <ol className="flex items-center">
@@ -170,7 +219,7 @@ const ProductDetail = () => {
 
                         </div>
 
-                        {/* Size Selection */}
+                    
                         <div className="mb-6">
                             <div className="mb-2 flex items-center">
                                 <span className="text-gray-700">Select Size</span>
@@ -192,7 +241,7 @@ const ProductDetail = () => {
                             </div>
                         </div>
 
-                        {/* Color Selection */}
+                        
                         <div className="mb-6">
                             <p className="text-gray-700 mb-2">Colors available</p>
                             <div className="flex gap-2">
@@ -208,7 +257,7 @@ const ProductDetail = () => {
                             </div>
                         </div>
 
-                        {/* Add to Cart */}
+                        
                         <div className="flex gap-4 mb-6 w-xl">
   <button className="flex-3/4 bg-purple-600 text-white py-3 rounded-md font-medium flex items-center justify-center space-x-2">
     <img src={cart} alt="cart" className="w-5 h-5" />
