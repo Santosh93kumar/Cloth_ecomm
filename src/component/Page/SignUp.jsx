@@ -1,0 +1,150 @@
+import React, { useState } from "react";
+import { FaTwitter, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
+
+const SignUp = () => {
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const navigate = useNavigate();
+
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
+    const handleSignUpClick = () => {
+        navigate('/sign-In');
+    };
+
+    const validateEmail = (e) => {
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(emailValue)) {
+            setEmailError("Please enter a valid email address");
+        } else {
+            setEmailError("");
+        }
+    };
+
+    return (
+        <div className="flex flex-col md:flex-row w-full min-h-screen">
+            {/* Left Side Image */}
+            <div className="hidden md:flex md:w-1/2 h-screen w-full bg-cover bg-center bg-no-repeat">
+                <img
+                    src="https://s3-alpha-sig.figma.com/img/9f91/4df4/eea76dc5260efee6392481867d9947a2?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=KtPxCNwpVlNo2iTkFCoI~0nT~mjBRPqWlPlseSJrs6fjFddPoImnggLwoPdmZGhwFeMh2mAX8tlJRJMVZOscE6-Eh6CJFX~mHygciTXuM8LHdwx8SdxegcE4VrplOwMXBMYXUJdT5infLk57EsxTXPyeITAeTw81fyJp80iK2hWY54b-U4oBPPoSRLZqfptd9tbMEU7FRPyhejaxSXFOHP3JssUd~Yc05ES4BHT4L0cA~dpw8SXLOeFqUErOx5Hd82VGRnIReMYfgizhWeCLktItzg2YWf3qj5i-mBwlFmNbB-xP~QGoCOGl4Ra7K3tlHyUktbWkt5GQpvc88qgZCw__"
+                    className="h-full w-full object-fit"
+                    alt="Background"
+                />
+            </div>
+
+            {/* Right Side Form */}
+            <div className="w-full md:w-1/2 flex items-center justify-center bg-white px-6 md:px-12 py-10">
+                <div className="w-full max-w-sm sm:max-w-md">
+                    <h2 className="text-3xl font-bold text-start mb-4">Sign Up</h2>
+                    <p className="text-gray-600 text-start mb-6">
+                        Sign up for free to access any of our products
+                    </p>
+
+                    {/* Social Logins */}
+                    <button className="w-full border border-gray-300 text-[#8A33FD] py-2 px-4 rounded mb-3 flex items-center justify-center hover:bg-gray-100 transition">
+                        <FcGoogle className="mr-2" /> Continue With Google
+                    </button>
+
+                    <button className="w-full border border-gray-300 text-[#8A33FD] py-2 px-4 rounded mb-4 flex items-center justify-center hover:bg-gray-100 transition">
+                        <FaTwitter className="mr-2 text-blue-500 text-xl" /> Continue With Twitter
+                    </button>
+
+                    <div className="flex items-center my-4">
+                        <hr className="flex-grow border-gray-300" />
+                        <span className="mx-2 text-gray-500">OR</span>
+                        <hr className="flex-grow border-gray-300" />
+                    </div>
+
+                    {/* Form */}
+                    <form>
+                        {/* Email Field */}
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Email Address
+                            </label>
+                            <input
+                                className={`w-full border rounded px-3 py-2 ${emailError ? "border-red-500" : ""}`}
+                                type="email"
+                                placeholder="designer@gmail.com"
+                                value={email}
+                                onChange={validateEmail}
+                            />
+                            {emailError && (
+                                <p className="text-red-500 text-xs mt-1">{emailError}</p>
+                            )}
+                        </div>
+
+                        {/* Password Field */}
+                        <div className="mb-4 relative">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Password
+                            </label>
+                            <div className="relative">
+                                <input
+                                    className="w-full border rounded px-3 py-2"
+                                    type={passwordVisible ? "text" : "password"}
+                                    placeholder="Enter your password"
+                                />
+                                <span
+                                    className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {passwordVisible ? (
+                                        <FaEyeSlash className="text-gray-500" />
+                                    ) : (
+                                        <FaEye className="text-gray-500" />
+                                    )}
+                                </span>
+                            </div>
+                            <p className="text-gray-500 text-xs mt-1">
+                                Use 8 or more characters with a mix of letters, numbers & symbols
+                            </p>
+                        </div>
+
+                        {/* Terms & Newsletter Checkboxes */}
+                        <div className="mb-4 flex items-start">
+                            <input type="checkbox" className="mr-2 mt-1" />
+                            <p className="text-sm text-gray-700">
+                                Agree to our{" "}
+                                <a href="#" className="text-black-600 underline">
+                                    Terms of use
+                                </a>{" "}
+                                and{" "}
+                                <a href="#" className="text-black-600 underline">
+                                    Privacy Policy
+                                </a>
+                            </p>
+                        </div>
+
+                        <div className="mb-6 flex items-start">
+                            <input type="checkbox" className="mr-2 mt-1" />
+                            <p className="text-sm text-gray-700">
+                                Subscribe to our monthly newsletter
+                            </p>
+                        </div>
+
+                        {/* Submit Button */}
+                        <button className="w-[40%] bg-purple-500 text-white py-2 rounded hover:bg-purple-700 transition">
+                            Sign Up
+                        </button>
+
+                        <p className="text-start text-gray-500 text-sm mt-4">
+                            Already have an account?{" "}
+                            <span onClick={handleSignUpClick} className="text-blue-500 cursor-pointer">Login</span>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default SignUp;
