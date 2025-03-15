@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddressForm = () => {
   return (
-    <div className="bg-white p-6 max-w-4xl mx-auto">
+    <div className=" p-6 max-w-4xl mx-auto h-screen">
       <div className="flex mb-8">
       </div>
       
