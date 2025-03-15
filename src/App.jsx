@@ -8,6 +8,8 @@ import ProductDetail from './component/Page/ProductDetail'
 import ShoppingCart from './component/Page/ShoppingCart'
 import Confirmed from './component/Page/Confirmed'
 import AddressForm from './component/Page/AddressForm'
+import Errorpage from './component/Page/Errorpage'
+import Email from './component/Page/Email'
 function App() {
   const router = createBrowserRouter([
     {
@@ -37,6 +39,14 @@ function App() {
         {
           path: "/address",
           element: <AddressForm/>,
+        },
+        {
+          path: "/error",
+          element: <Errorpage/>,
+        },
+        {
+          path:"/email",
+          element:<Email/>,
         }
       
       ]
