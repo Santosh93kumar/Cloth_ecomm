@@ -9,12 +9,17 @@ import ShoppingCart from './component/Page/ShoppingCart'
 import Confirmed from './component/Page/Confirmed'
 import AddressForm from './component/Page/AddressForm'
 import Errorpage from './component/Page/Errorpage'
-import Email from './component/Page/Email'
+import Email from './component/Page/login/Email'
+import SignIn from './component/Page/login/SignIn'
+import Password from './component/Page/login/Password'
+import Verification from './component/Page/login/Verification'
+import MyOrders from './component/Page/MyOrder'
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Applayout />,
+      errorElement:<Errorpage/>,
       children: [
         {
           path: "",
@@ -41,12 +46,24 @@ function App() {
           element: <AddressForm/>,
         },
         {
-          path: "/error",
-          element: <Errorpage/>,
+          path: "/order",
+          element: <MyOrders/>,
         },
         {
           path:"/email",
           element:<Email/>,
+        },
+        {
+          path:"/signin",
+          element:<SignIn/>,
+        },
+        {
+          path:"/verify",
+          element:<Verification/>,
+        },
+        {
+          path:"/password",
+          element:<Password/>,
         }
       
       ]
