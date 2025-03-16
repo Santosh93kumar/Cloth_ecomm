@@ -1,22 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import email from "../Image/email1.png";
+import email from "../../Image/email1.png";
 
 export default function Email() {
   return (
-    <div className="grid grid-cols-10 h-screen w-full">
-      
-      <div className="hidden md:block col-span-4 bg-amber-500">
-        <img 
-          src={email}
-          alt="Friends smiling" 
-          className="w-full h-screen object-cover object-center"
-        />
-      </div>
-      
-      
-      <div className="col-span-10 md:col-span-6 flex flex-col  px-8 md:px-16 bg-white">
-        <div className="max-w-md">
+    <div className="flex flex-col md:flex-row h-screen">
+            {/* Left Section - Image */}
+            <div className="hidden md:block md:w-1/3 bg-contain bg-center bg-no-repeat">
+                <img 
+                    src={email}
+                    className="h-full w-full object-left object-scale-down" 
+                    alt="Background"
+                />
+            </div>
+
+            {/* Right Section - Sign-in Form */}
+            <div className="w-full md:w-2/3 flex h-full flex-col  px-6 md:px-12 py-15 ">
+        <div className="max-w-md w-full">
           <h1 className="text-2xl font-semibold py-8  text-gray-800 mb-4">
             Check Email
           </h1>
