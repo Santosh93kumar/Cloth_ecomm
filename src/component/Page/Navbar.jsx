@@ -52,7 +52,7 @@ const Navbar = () => {
           Login
         </button>
         <button
-          className={`px-4 py-2 border-gray-400 rounded-lg ${
+          className={`px-4 py-2 rounded-lg ${
             activeButton === "signup" ? "bg-purple-700 text-white" : "text-gray-700 hover:bg-gray-100"
           }`}
           onClick={() => {

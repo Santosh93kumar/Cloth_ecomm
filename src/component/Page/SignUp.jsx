@@ -7,8 +7,12 @@ const SignUp = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [termsChecked, setTermsChecked] = useState(false);
+    const [termsError, setTermsError] = useState("");
+    const [newsletterChecked, setNewsletterChecked] = useState(false);
     const navigate = useNavigate();
-
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -26,6 +30,42 @@ const SignUp = () => {
             setEmailError("Please enter a valid email address");
         } else {
             setEmailError("");
+        }
+    };
+
+    const validatePassword = (e) => {
+        const passwordValue = e.target.value;
+        setPassword(passwordValue);
+        if (passwordValue.length < 8) {
+            setPasswordError("Password must be at least 8 characters");
+        } else {
+            setPasswordError("");
+        }
+    };
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        if (!email) {
+            setEmailError("Email is required");
+            valid = false;
+        }
+
+        if (!password) {
+            setPasswordError("Password is required");
+            valid = false;
+        }
+
+        if (!termsChecked) {
+            setTermsError("You must agree to the terms");
+            valid = false;
+        } else {
+            setTermsError("");
+        }
+
+        if (valid) {
+            alert("Form submitted successfully!");
         }
     };
 
@@ -64,7 +104,7 @@ const SignUp = () => {
                     </div>
 
                     {/* Form */}
-                    <form>
+                    <form onSubmit={handleSignUp}>
                         {/* Email Field */}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -89,9 +129,11 @@ const SignUp = () => {
                             </label>
                             <div className="relative">
                                 <input
-                                    className="w-full border rounded px-3 py-2"
+                                    className={`w-full border rounded px-3 py-2 ${passwordError ? "border-red-500" : ""}`}
                                     type={passwordVisible ? "text" : "password"}
                                     placeholder="Enter your password"
+                                    value={password}
+                                    onChange={validatePassword}
                                 />
                                 <span
                                     className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
@@ -104,6 +146,9 @@ const SignUp = () => {
                                     )}
                                 </span>
                             </div>
+                            {passwordError && (
+                                <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+                            )}
                             <p className="text-gray-500 text-xs mt-1">
                                 Use 8 or more characters with a mix of letters, numbers & symbols
                             </p>
@@ -111,7 +156,12 @@ const SignUp = () => {
 
                         {/* Terms & Newsletter Checkboxes */}
                         <div className="mb-4 flex items-start">
-                            <input type="checkbox" className="mr-2 mt-1" />
+                            <input
+                                type="checkbox"
+                                className="mr-2 mt-1"
+                                checked={termsChecked}
+                                onChange={() => setTermsChecked(!termsChecked)}
+                            />
                             <p className="text-sm text-gray-700">
                                 Agree to our{" "}
                                 <a href="#" className="text-black-600 underline">
@@ -123,16 +173,23 @@ const SignUp = () => {
                                 </a>
                             </p>
                         </div>
+                        {termsError && <p className="text-red-500 text-xs mt-1">{termsError}</p>}
 
                         <div className="mb-6 flex items-start">
-                            <input type="checkbox" className="mr-2 mt-1" />
-                            <p className="text-sm text-gray-700">
-                                Subscribe to our monthly newsletter
-                            </p>
+                            <input
+                                type="checkbox"
+                                className="mr-2 mt-1"
+                                checked={newsletterChecked}
+                                onChange={() => setNewsletterChecked(!newsletterChecked)}
+                            />
+                            <p className="text-sm text-gray-700">Subscribe to our monthly newsletter</p>
                         </div>
 
                         {/* Submit Button */}
-                        <button className="w-[40%] bg-purple-500 text-white py-2 rounded hover:bg-purple-700 transition">
+                        <button
+                            type="submit"
+                            className="w-[40%] bg-purple-500 text-white py-2 rounded hover:bg-purple-700 transition"
+                        >
                             Sign Up
                         </button>
 
