@@ -87,7 +87,6 @@ const router = createBrowserRouter([
             { path: 'cart', element: <ShoppingCart /> },
             { path: 'confirmed', element: <Confirmed /> },
             { path: 'address', element: <AddressForm /> },
-            // {path:"footer",element:<Footer/>}
         ],
     },
 ]);
