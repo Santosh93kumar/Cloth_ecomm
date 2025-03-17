@@ -9,16 +9,19 @@ import ShoppingCart from './component/Page/ShoppingCart'
 import Confirmed from './component/Page/Confirmed'
 import AddressForm from './component/Page/AddressForm'
 import Errorpage from './component/Page/Errorpage'
-import Email from './component/Page/Email'
+import Email from './component/Page/login/Email'
+import SignIn from './component/Page/login/SignIn'
+import SignUp from './component/Page/login/SignUp'
+import Password from './component/Page/login/Password'
+import Verification from './component/Page/login/Verification'
 import MyOrders from './component/Page/MyOrder'
-import OrderDetails from "./component/Page/OrderDetails"
-import SignUp from "./component/Page/SignUp"
-import SignIn from "./component/Page/SignIn"
+import OrderDetails from './component/Page/OrderDetails'
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Applayout />,
+      errorElement:<Errorpage/>,
       children: [
         {
           path: "",
@@ -45,28 +48,32 @@ function App() {
           element: <AddressForm/>,
         },
         {
-          path: "/error",
-          element: <Errorpage/>,
-        },
-        {
-          path:"/email",
-          element:<Email/>,
-        },
-        {
-          path:"/my-order",
-          element:<MyOrders/>
+          path: "/my-order",
+          element: <MyOrders/>,
         },
         {
           path:"/order-details",
           element:<OrderDetails/>
         },
         {
-          path: 'sign-up',
-          element: <SignUp />,
-        }
-        ,{
-          path:"sign-in",
-          element:<SignIn/>
+          path:"/email",
+          element:<Email/>,
+        },
+        {
+          path:"/signin",
+          element:<SignIn/>,
+        },
+        {
+          path:"/sign-up",
+          element:<SignUp/>,
+        },
+        {
+          path:"/verify",
+          element:<Verification/>,
+        },
+        {
+          path:"/password",
+          element:<Password/>,
         }
       
       ]
@@ -74,10 +81,6 @@ function App() {
   ])
 
   return <RouterProvider router={router} />
-
-
-
- 
 
 }
 
