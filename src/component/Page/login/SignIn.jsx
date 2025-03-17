@@ -3,7 +3,7 @@ import { FaTwitter, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+const SignIn = ({ onLoginSuccess }) => { // Add onLoginSuccess prop
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [formData, setFormData] = useState({ username: "", password: "" });
     const [errors, setErrors] = useState({});
@@ -14,7 +14,7 @@ const SignIn = () => {
     };
 
     const handleSignUpClick = () => {
-        navigate('/Sign-Up');
+        navigate('/sign-up');
     };
 
     const handleChange = (e) => {
@@ -34,7 +34,8 @@ const SignIn = () => {
         e.preventDefault();
         if (validateForm()) {
             console.log("Form Submitted:", formData);
-            // Proceed with login logic here
+            // Call the onLoginSuccess callback to update the parent state
+            onLoginSuccess();
         }
     };
 

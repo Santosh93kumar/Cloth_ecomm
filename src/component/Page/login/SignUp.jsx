@@ -3,7 +3,7 @@ import { FaTwitter, FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
@@ -18,8 +18,8 @@ const SignUp = () => {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleSignUpClick = () => {
-        navigate('/sign-In');
+    const handleSignInClick = () => {
+        navigate('/header');
     };
 
     const validateEmail = (e) => {
@@ -65,7 +65,9 @@ const SignUp = () => {
         }
 
         if (valid) {
-            alert("Form submitted successfully!");
+            console.log("Form Submitted:", { email, password });
+            // Call the onSignUpSuccess callback to update the parent state
+            onSignUpSuccess();
         }
     };
 
@@ -195,7 +197,7 @@ const SignUp = () => {
 
                         <p className="text-start text-gray-500 text-sm mt-4">
                             Already have an account?{" "}
-                            <span onClick={handleSignUpClick} className="text-blue-500 cursor-pointer">Login</span>
+                            <span onClick={handleSignInClick} className="text-blue-500 cursor-pointer">Login</span>
                         </p>
                     </form>
                 </div>
