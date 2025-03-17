@@ -15,6 +15,11 @@ import SignUp from './component/Page/login/SignUp'
 import Password from './component/Page/login/Password'
 import Verification from './component/Page/login/Verification'
 import MyOrders from './component/Page/MyOrder'
+import ContactDetails from "../src/component/Page/ContactDetails"
+import Checkout from './component/Page/Checkout'
+import EmptyCart from './component/Page/EmptyCart'
+import Wishlist from './component/Page/Wishlist'
+import ResetPassword from './component/Page/login/ResetPassword'
 import OrderDetails from './component/Page/OrderDetails'
 function App() {
   const router = createBrowserRouter([
@@ -74,7 +79,28 @@ function App() {
         {
           path:"/password",
           element:<Password/>,
-        }
+        },
+        {
+          path: "/contact",
+          element: <ContactDetails/>,
+        },
+        {
+          path: "/checkout",
+          element: <Checkout/>,
+        },
+        {
+          path: "/empty-cart",
+          element: <EmptyCart/>,
+        },
+        {
+          path: "/wishlist",
+          element: <Wishlist/>,
+        },
+        {
+          path: "/reset-password",
+          element: <ResetPassword/>,
+        },
+
       
       ]
     }
