@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [formData, setFormData] = useState({ username: "", password: "" });
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
@@ -13,6 +15,27 @@ const SignIn = () => {
 
     const handleSignUpClick = () => {
         navigate('/Sign-Up');
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setErrors({ ...errors, [e.target.name]: "" }); // Clear error on input change
+    };
+
+    const validateForm = () => {
+        let tempErrors = {};
+        if (!formData.username.trim()) tempErrors.username = "Username or Email is required";
+        if (!formData.password.trim()) tempErrors.password = "Password is required";
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            console.log("Form Submitted:", formData);
+            // Proceed with login logic here
+        }
     };
 
     return (
@@ -44,17 +67,21 @@ const SignIn = () => {
                         <hr className="flex-grow border-gray-300" />
                     </div>
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                                 User name or email address
                             </label>
                             <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.username ? "border-red-500" : ""}`}
                                 id="username"
+                                name="username"
                                 type="text"
                                 placeholder="Username or Email"
+                                value={formData.username}
+                                onChange={handleChange}
                             />
+                            {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username}</p>}
                         </div>
 
                         <div className="mb-6 relative">
@@ -63,15 +90,19 @@ const SignIn = () => {
                             </label>
                             <div className="relative">
                                 <input
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10 ${errors.password ? "border-red-500" : ""}`}
                                     id="password"
+                                    name="password"
                                     type={passwordVisible ? "text" : "password"}
-                                    placeholder="enter your password"
+                                    placeholder="Enter your password"
+                                    value={formData.password}
+                                    onChange={handleChange}
                                 />
                                 <span className="absolute inset-y-0 right-3 flex items-center text-sm leading-5 cursor-pointer" onClick={togglePasswordVisibility}>
                                     {passwordVisible ? <FaEyeSlash className="text-gray-500" /> : <FaEye className="text-gray-500" />}
                                 </span>
                             </div>
+                            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
                             <p className="text-right text-black-500 text-sm mt-2 underline">
                                 <a href="#">Forgot your password?</a>
                             </p>
@@ -79,8 +110,8 @@ const SignIn = () => {
 
                         <div className="flex items-center justify-between">
                             <button
-                                className="w-50% bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="button"
+                                className="w-[40%] bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="submit"
                             >
                                 Sign In
                             </button>
