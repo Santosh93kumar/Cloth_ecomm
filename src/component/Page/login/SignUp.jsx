@@ -18,9 +18,43 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleSignInClick = () => {
-        navigate('/header');
+    const handleSignInClick = (e) => {
+        e.preventDefault(); 
+        let valid = true;
+    
+        if (!email) {
+            setEmailError("Email is required");
+            valid = false;
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            setEmailError("Please enter a valid email address");
+            valid = false;
+        } else {
+            setEmailError("");
+        }
+    
+        if (!password) {
+            setPasswordError("Password is required");
+            valid = false;
+        } else if (password.length < 8) {
+            setPasswordError("Password must be at least 8 characters");
+            valid = false;
+        } else {
+            setPasswordError("");
+        }
+    
+        if (!termsChecked) {
+            setTermsError("You must agree to the terms");
+            valid = false;
+        } else {
+            setTermsError("");
+        }
+    
+        if (valid) {
+            console.log("Form Submitted:", { email, password });
+            navigate('/signin');
+        }
     };
+    
 
     const validateEmail = (e) => {
         const emailValue = e.target.value;
@@ -46,30 +80,31 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
     const handleSignUp = (e) => {
         e.preventDefault();
         let valid = true;
-
+    
         if (!email) {
             setEmailError("Email is required");
             valid = false;
         }
-
+    
         if (!password) {
             setPasswordError("Password is required");
             valid = false;
         }
-
+    
         if (!termsChecked) {
             setTermsError("You must agree to the terms");
             valid = false;
         } else {
             setTermsError("");
         }
-
+    
         if (valid) {
             console.log("Form Submitted:", { email, password });
-            // Call the onSignUpSuccess callback to update the parent state
-            onSignUpSuccess();
+            navigate("/signin"); // ✅ Navigate only when everything is valid
         }
     };
+    
+    
 
     return (
         <div className="flex flex-col md:flex-row w-full min-h-screen">
@@ -191,6 +226,7 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                         <button
                             type="submit"
                             className="w-[40%] bg-purple-500 text-white py-2 rounded hover:bg-purple-700 transition"
+                            onClick={handleSignInClick}
                         >
                             Sign Up
                         </button>

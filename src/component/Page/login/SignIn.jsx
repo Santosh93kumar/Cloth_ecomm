@@ -105,7 +105,7 @@ const SignIn = ({ onLoginSuccess }) => { // Add onLoginSuccess prop
                             </div>
                             {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
                             <p className="text-right text-black-500 text-sm mt-2 underline">
-                                <a href="#">Forgot your password?</a>
+                                <a href="#" onClick={()=>navigate("/forgot-password")}>Forgot your password?</a>
                             </p>
                         </div>
 
@@ -113,6 +113,7 @@ const SignIn = ({ onLoginSuccess }) => { // Add onLoginSuccess prop
                             <button
                                 className="w-[40%] bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit"
+                                onClick={()=>navigate("/signin")}
                             >
                                 Sign In
                             </button>

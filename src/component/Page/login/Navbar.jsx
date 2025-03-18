@@ -46,7 +46,7 @@ const Navbar = () => {
           }`}
           onClick={() => {
             setActiveButton("login");
-            navigate("/");
+            navigate("/signin");
           }}
         >
           Login
