@@ -3,7 +3,7 @@ import { FaTwitter, FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
+const SignUp = ({ onSignUpSuccess }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
@@ -16,6 +16,17 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
+    };
+
+    const validateEmail = (value) => {
+        setEmail(value);
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        setEmailError(emailPattern.test(value) ? "" : "Please enter a valid email address");
+    };
+
+    const validatePassword = (value) => {
+        setPassword(value);
+        setPasswordError(value.length >= 8 ? "" : "Password must be at least 8 characters");
     };
 
     const handleSignInClick = (e) => {
@@ -51,60 +62,10 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
     
         if (valid) {
             console.log("Form Submitted:", { email, password });
-            navigate('/signin');
+            // navigate('/home');
+            onSignUpSuccess?.();
         }
     };
-    
-
-    const validateEmail = (e) => {
-        const emailValue = e.target.value;
-        setEmail(emailValue);
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailPattern.test(emailValue)) {
-            setEmailError("Please enter a valid email address");
-        } else {
-            setEmailError("");
-        }
-    };
-
-    const validatePassword = (e) => {
-        const passwordValue = e.target.value;
-        setPassword(passwordValue);
-        if (passwordValue.length < 8) {
-            setPasswordError("Password must be at least 8 characters");
-        } else {
-            setPasswordError("");
-        }
-    };
-
-    const handleSignUp = (e) => {
-        e.preventDefault();
-        let valid = true;
-    
-        if (!email) {
-            setEmailError("Email is required");
-            valid = false;
-        }
-    
-        if (!password) {
-            setPasswordError("Password is required");
-            valid = false;
-        }
-    
-        if (!termsChecked) {
-            setTermsError("You must agree to the terms");
-            valid = false;
-        } else {
-            setTermsError("");
-        }
-    
-        if (valid) {
-            console.log("Form Submitted:", { email, password });
-            navigate("/signin"); // ✅ Navigate only when everything is valid
-        }
-    };
-    
-    
 
     return (
         <div className="flex flex-col md:flex-row w-full min-h-screen">
@@ -141,7 +102,7 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={handleSignUp}>
+                    <form >
                         {/* Email Field */}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -152,11 +113,10 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                                 type="email"
                                 placeholder="designer@gmail.com"
                                 value={email}
-                                onChange={validateEmail}
+                                onChange={(e) => validateEmail(e.target.value)}
+                                required
                             />
-                            {emailError && (
-                                <p className="text-red-500 text-xs mt-1">{emailError}</p>
-                            )}
+                            {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
                         </div>
 
                         {/* Password Field */}
@@ -170,7 +130,8 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                                     type={passwordVisible ? "text" : "password"}
                                     placeholder="Enter your password"
                                     value={password}
-                                    onChange={validatePassword}
+                                    onChange={(e) => validatePassword(e.target.value)}
+                                    required
                                 />
                                 <span
                                     className="absolute inset-y-0 right-3 flex items-center cursor-pointer"
@@ -183,12 +144,7 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                                     )}
                                 </span>
                             </div>
-                            {passwordError && (
-                                <p className="text-red-500 text-xs mt-1">{passwordError}</p>
-                            )}
-                            <p className="text-gray-500 text-xs mt-1">
-                                Use 8 or more characters with a mix of letters, numbers & symbols
-                            </p>
+                            {passwordError && <p className="text-red-500 text-xs mt-1">{passwordError}</p>}
                         </div>
 
                         {/* Terms & Newsletter Checkboxes */}
@@ -198,6 +154,7 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                                 className="mr-2 mt-1"
                                 checked={termsChecked}
                                 onChange={() => setTermsChecked(!termsChecked)}
+                                required
                             />
                             <p className="text-sm text-gray-700">
                                 Agree to our{" "}
@@ -211,7 +168,6 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                             </p>
                         </div>
                         {termsError && <p className="text-red-500 text-xs mt-1">{termsError}</p>}
-
                         <div className="mb-6 flex items-start">
                             <input
                                 type="checkbox"
@@ -222,7 +178,6 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                             <p className="text-sm text-gray-700">Subscribe to our monthly newsletter</p>
                         </div>
 
-                        {/* Submit Button */}
                         <button
                             type="submit"
                             className="w-[40%] bg-purple-500 text-white py-2 rounded hover:bg-purple-700 transition"
@@ -230,10 +185,9 @@ const SignUp = ({ onSignUpSuccess }) => { // Add onSignUpSuccess prop
                         >
                             Sign Up
                         </button>
-
                         <p className="text-start text-gray-500 text-sm mt-4">
                             Already have an account?{" "}
-                            <span onClick={handleSignInClick} className="text-blue-500 cursor-pointer">Login</span>
+                            <span onClick={()=>navigate("/signin")} className="text-blue-500 cursor-pointer">Login</span>
                         </p>
                     </form>
                 </div>
