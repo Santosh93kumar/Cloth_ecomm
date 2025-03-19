@@ -3,7 +3,7 @@ import { FaTwitter, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+const SignIn = ({ onLoginSuccess }) => { // Add onLoginSuccess prop
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [formData, setFormData] = useState({ username: "", password: "" });
     const [errors, setErrors] = useState({});
@@ -14,7 +14,7 @@ const SignIn = () => {
     };
 
     const handleSignUpClick = () => {
-        navigate('/Sign-Up');
+        navigate('/sign-up');
     };
 
     const handleChange = (e) => {
@@ -34,7 +34,8 @@ const SignIn = () => {
         e.preventDefault();
         if (validateForm()) {
             console.log("Form Submitted:", formData);
-            // Proceed with login logic here
+            // Call the onLoginSuccess callback to update the parent state
+            onLoginSuccess();
         }
     };
 
@@ -104,7 +105,7 @@ const SignIn = () => {
                             </div>
                             {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
                             <p className="text-right text-black-500 text-sm mt-2 underline">
-                                <a href="#">Forgot your password?</a>
+                                <a href="#" onClick={()=>navigate("/forgot-password")}>Forgot your password?</a>
                             </p>
                         </div>
 
@@ -112,6 +113,7 @@ const SignIn = () => {
                             <button
                                 className="w-[40%] bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit"
+                                onClick={()=>navigate("/signin")}
                             >
                                 Sign In
                             </button>
