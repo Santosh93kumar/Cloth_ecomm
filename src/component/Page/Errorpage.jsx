@@ -6,7 +6,7 @@ export default function ErrorPage() {
   const navigate = useNavigate();
 
   const handleNavigateHome = () => {
-    navigate('/');
+    navigate('/home');
   };
 
   return (

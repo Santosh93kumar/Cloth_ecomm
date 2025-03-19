@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import {  Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { FaAngleLeft } from "react-icons/fa6";
+import { FaRegUser, FaRegHeart, FaSignOutAlt, FaHeart } from "react-icons/fa";
 
 const OrderDetails = () => {
   const navigate = useNavigate();
@@ -57,10 +58,36 @@ const OrderDetails = () => {
         </ul>
       </aside> */}
 
+      <aside className="w-full md:w-1/4 p-6 border-r border-gray-200">
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <span className="w-2 h-6 bg-purple-500 rounded-full"></span> Hello Janvi
+        </h2>
+        <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
+
+        <nav className="space-y-4">
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
+            <FaRegUser onClick={() => navigate('/home/order')} /> My Orders
+          </button>
+          <button className="flex items-center gap-3 text-black font-bold">
+            <FaRegHeart onClick={() => navigate('/home/wishlist')} /> Wishlist
+          </button>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
+            <FaRegUser /> My Info
+          </button>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={() => {
+            localStorage.removeItem('isAuthenticated');
+            navigate('/');
+            window.location.reload(); // Force refresh for state update
+          }}>
+            <FaSignOutAlt /> Sign Out
+          </button>
+        </nav>
+      </aside>
+
       <main className="w-full md:w-3/4 p-6 bg-white shadow-md rounded-lg mt-6 md:mt-0 md:ml-6">
         <div className="p-4 md:p-6 max-w-3xl mx-auto">
 
-        <h1 className="text-2xl font-semibold  mb-4 flex items-center gap-2" onClick={() => navigate("/my-order")}><FaAngleLeft sixe={25}/>Order Details</h1>
+          <h1 className="text-2xl font-semibold  mb-4 flex items-center gap-2" onClick={() => navigate("/home/order")}><FaAngleLeft sixe={25} />Order Details</h1>
 
           <div className="bg-gray-100 p-4 rounded-md shadow-sm mb-6">
             <div className="flex flex-col md:flex-row justify-between">
@@ -103,7 +130,7 @@ const OrderDetails = () => {
 
           {/* Status Update */}
           <div className="flex flex-col md:flex-row items-center space-x-4 shadow-sm mb-6 w-full max-w-lg mx-auto bg-gray-100 p-4 rounded-lg relative text-center text-sm">
-          {completedSteps > 0 && completedSteps < steps.length && (
+            {completedSteps > 0 && completedSteps < steps.length && (
               <div
                 className="absolute top-0 w-4 h-4 bg-gray-100 rotate-45"
                 style={{

@@ -11,6 +11,10 @@ import ShoppingCart from './component/Page/ShoppingCart';
 import Confirmed from './component/Page/Confirmed';
 import AddressForm from './component/Page/AddressForm';
 import Applayout from './component/Applayout';
+import Wishlist from "./component/Page/Wishlist"
+import MyOrders from './component/Page/MyOrder';
+import OrderDetails from "./component/Page/OrderDetails"
+import Checkout from "./component/Page/Checkout"
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -30,27 +34,28 @@ function AuthWrapper({ children }) {
         navigate('/');
     };
 
-    return isAuthenticated ? (
+    return (
         <>
-            <Applayout />
-            <button onClick={handleLogout} className="logout-btn">
-                Logout
-            </button>
+            {isAuthenticated ? (
+                <>
+                    <Applayout handleLogout={handleLogout}/>
+                </>
+            ) : (
+                children(handleLoginSuccess)
+            )}
         </>
-    ) : (
-        children(handleLoginSuccess)
     );
 }
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/sign-up',
         element: (
             <AuthWrapper>
                 {(handleLoginSuccess) => (
                     <>
                         <Navbar />
-                        <SignIn onLoginSuccess={handleLoginSuccess} />
+                        <SignUp onSignUpSuccess={handleLoginSuccess} />
                     </>
                 )}
             </AuthWrapper>
@@ -58,7 +63,7 @@ const router = createBrowserRouter([
         errorElement: <Errorpage />,
     },
     {
-        path: '/sign-up',
+        path: '/',
         element: (
             <AuthWrapper>
                 {(handleLoginSuccess) => (
@@ -83,9 +88,18 @@ const router = createBrowserRouter([
             </AuthWrapper>
         ),
     },
+    // {
+    //     path: '/forgot-password',
+    //     element: (
+    //         <>
+    //             <Navbar />
+    //             <Password />
+    //         </>
+    //     ),
+    // },
     {
         path: '/home',
-        element: <AuthWrapper>{() => <Outlet />}</AuthWrapper>,
+        element: <AuthWrapper />,
         errorElement: <Errorpage />,
         children: [
             { index: true, element: <HeroSection /> },
@@ -93,7 +107,11 @@ const router = createBrowserRouter([
             { path: 'product-detail', element: <ProductDetail /> },
             { path: 'cart', element: <ShoppingCart /> },
             { path: 'confirmed', element: <Confirmed /> },
-            { path: 'address', element: <AddressForm /> },
+            { path: 'order', element: <MyOrders /> },
+            { path: 'wishlist', element: <Wishlist /> },
+            { path: 'orderdetails', element: <OrderDetails /> },
+            { path: 'checkout', element: <Checkout /> },
+
         ],
     },
 ]);
