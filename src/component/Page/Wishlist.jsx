@@ -15,10 +15,10 @@ const Wishlist = () => {
 
   // Recently viewed items
   const [recentlyViewed, setRecentlyViewed] = useState([
-    { id: 1, name: "Casual Shirt", price: "$19.99", brand: "Jhanvi’s Brand", image: product1 },
-    { id: 2, name: "Sports Shoes", price: "$34.99", brand: "AS’s Brand", image: product2 },
-    { id: 3, name: "Leather Jacket", price: "$59.99", brand: "MM’s Brand", image: product3 },
-    { id: 4, name: "Classic Watch", price: "$79.99", brand: "Nike’s Brand", image: product1 },
+    { id: 1, name: "Casual Shirt", price: "$19.99", brand: "Jhanvi's Brand", image: product1 },
+    { id: 2, name: "Sports Shoes", price: "$34.99", brand: "AS's Brand", image: product2 },
+    { id: 3, name: "Leather Jacket", price: "$59.99", brand: "MM's Brand", image: product3 },
+    { id: 4, name: "Classic Watch", price: "$79.99", brand: "Nike's Brand", image: product1 },
   ]);
 
   const toggleWishlist = (product) => {
