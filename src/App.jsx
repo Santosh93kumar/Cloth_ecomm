@@ -11,7 +11,6 @@ import ShoppingCart from './component/Page/ShoppingCart';
 import Confirmed from './component/Page/Confirmed';
 import AddressForm from './component/Page/AddressForm';
 import Applayout from './component/Applayout';
-// import Password from './component/Page/login/Password';
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -31,31 +30,27 @@ function AuthWrapper({ children }) {
         navigate('/');
     };
 
-    return (
+    return isAuthenticated ? (
         <>
-            {isAuthenticated ? (
-                <>
-                    <Applayout />
-                    <button onClick={handleLogout} className="logout-btn">
-                        Logout
-                    </button>
-                </>
-            ) : (
-                children(handleLoginSuccess)
-            )}
+            <Applayout />
+            <button onClick={handleLogout} className="logout-btn">
+                Logout
+            </button>
         </>
+    ) : (
+        children(handleLoginSuccess)
     );
 }
 
 const router = createBrowserRouter([
     {
-        path: '/sign-up',
+        path: '/',
         element: (
             <AuthWrapper>
                 {(handleLoginSuccess) => (
                     <>
                         <Navbar />
-                        <SignUp onSignUpSuccess={handleLoginSuccess} />
+                        <SignIn onLoginSuccess={handleLoginSuccess} />
                     </>
                 )}
             </AuthWrapper>
@@ -63,7 +58,7 @@ const router = createBrowserRouter([
         errorElement: <Errorpage />,
     },
     {
-        path: '/',
+        path: '/sign-up',
         element: (
             <AuthWrapper>
                 {(handleLoginSuccess) => (
@@ -88,18 +83,9 @@ const router = createBrowserRouter([
             </AuthWrapper>
         ),
     },
-    // {
-    //     path: '/forgot-password',
-    //     element: (
-    //         <>
-    //             <Navbar />
-    //             <Password />
-    //         </>
-    //     ),
-    // },
     {
         path: '/home',
-        element: <AuthWrapper />,
+        element: <AuthWrapper>{() => <Outlet />}</AuthWrapper>,
         errorElement: <Errorpage />,
         children: [
             { index: true, element: <HeroSection /> },
