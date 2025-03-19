@@ -11,7 +11,7 @@ import ShoppingCart from './component/Page/ShoppingCart';
 import Confirmed from './component/Page/Confirmed';
 import AddressForm from './component/Page/AddressForm';
 import Applayout from './component/Applayout';
-import Password from './component/Page/login/Password';
+// import Password from './component/Page/login/Password';
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(

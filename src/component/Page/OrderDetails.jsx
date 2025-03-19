@@ -9,8 +9,8 @@ const OrderDetails = () => {
   const order = location.state?.order;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const closeSidebar = () => setIsSidebarOpen(false);
+  // const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  // const closeSidebar = () => setIsSidebarOpen(false);
 
   if (!order) {
     return <p className="text-center text-gray-500">No order details found.</p>;
