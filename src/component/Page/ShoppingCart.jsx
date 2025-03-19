@@ -3,6 +3,7 @@ import im1 from "../Image/Rectangle 25.png";
 import im2 from "../Image/product1.png";
 import im3 from "../Image/product2.png";
 import del from "../Image/deletecon.png";
+import { Navigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([
@@ -153,7 +154,7 @@ const ShoppingCart = () => {
               <span>Grand Total</span>
               <span>$518.00</span>
             </div>
-            <button className="w-full bg-purple-600 hover:bg-purple-700 rounded-lg text-white py-3 mt-4 transition-colors">
+            <button className="w-full bg-purple-600 hover:bg-purple-700 rounded-lg text-white py-3 mt-4 transition-colors" >
               Proceed To Checkout
             </button>
           </div>
