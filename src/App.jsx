@@ -11,6 +11,8 @@ import ShoppingCart from './component/Page/ShoppingCart';
 import Confirmed from './component/Page/Confirmed';
 import AddressForm from './component/Page/AddressForm';
 import Applayout from './component/Applayout';
+import Wishlist from './component/Page/Wishlist';
+import MyOrder from './component/Page/MyOrder';
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -94,6 +96,8 @@ const router = createBrowserRouter([
             { path: 'cart', element: <ShoppingCart /> },
             { path: 'confirmed', element: <Confirmed /> },
             { path: 'address', element: <AddressForm /> },
+            { path: 'wishlist', element: <Wishlist /> },
+            { path: 'order', element: <MyOrder /> },
         ],
     },
 ]);
