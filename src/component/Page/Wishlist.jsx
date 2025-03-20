@@ -61,7 +61,7 @@ const Wishlist = () => {
           <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
 
           <nav className="space-y-4">
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate("/home/order")}>
+            <button className="flex items-center gap-3  " onClick={()=>navigate("/home/order")}>
               <FaRegUser /> My Orders
             </button>
             <button className="flex items-center gap-3 text-black font-bold">
