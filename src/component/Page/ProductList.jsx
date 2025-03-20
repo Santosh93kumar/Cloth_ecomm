@@ -6,8 +6,11 @@ import im3 from "../Image/product2.png";
 import im4 from "../Image/product3.png";
 import im5 from "../Image/product4.png";
 import filter from '../Image/filter.png'
+import { useNavigate } from 'react-router-dom';
 
 const ProductList = () => {
+
+  const navigate=useNavigate()
 
   const [priceRange, setPriceRange] = useState([10, 400]);
   const [isDragging, setIsDragging] = useState(null);
@@ -562,7 +565,7 @@ const ProductList = () => {
                   className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                 >
 
-                  <div className="relative rounded-t-lg overflow-hidden">
+                  <div className="relative rounded-t-lg overflow-hidden" onClick={()=>navigate('/home/product-detail')}>
                     <img
                       src={product.image}
                       alt={product.name}

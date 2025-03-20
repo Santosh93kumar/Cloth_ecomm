@@ -264,7 +264,8 @@ const orders = [
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // Import X for close icon
+import { FaRegUser, FaRegHeart, FaSignOutAlt, FaHeart } from "react-icons/fa";
+// import { Menu, X } from "lucide-react"; // Import X for close icon
 
 export default function MyOrders() {
   const [activeTab, setActiveTab] = useState("Active");
@@ -272,21 +273,21 @@ export default function MyOrders() {
   const navigate = useNavigate();
 
   const handleOrderClick = (order) => {
-    navigate("/order-details", { state: { order } });
+    navigate("/home/orderdetails", { state: { order } });
   };
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const closeSidebar = () => setIsSidebarOpen(false);
+  // const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  // const closeSidebar = () => setIsSidebarOpen(false);
 
   const filteredOrders = orders.filter((order) => {
     const status = order.status.toLowerCase();
     return activeTab === "Active"
       ? status === "in-progress"
       : activeTab === "Cancelled"
-      ? status === "cancelled"
-      : activeTab === "Completed"
-      ? status === "completed"
-      : false;
+        ? status === "cancelled"
+        : activeTab === "Completed"
+          ? status === "completed"
+          : false;
   });
 
   return (
@@ -316,9 +317,34 @@ export default function MyOrders() {
           <li className="py-2 text-gray-700 flex items-center cursor-pointer hover:bg-gray-200 rounded-md">🔓 Sign out</li>
         </ul>
       </aside> */}
+      <aside className="w-full md:w-1/4 p-6 border-r border-gray-200">
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <span className="w-2 h-6 bg-purple-500 rounded-full"></span> Hello Janvi
+        </h2>
+        <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
+
+        <nav className="space-y-4">
+          <button className="flex items-center gap-3 text-black font-bold">
+            <FaRegUser /> My Orders
+          </button>
+          <button className="flex items-center gap-3 " onClick={()=>navigate('/home/wishlist')}>
+            <FaRegHeart /> Wishlist
+          </button>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate('/home/contactdetails')}>
+            <FaRegUser /> My Info
+          </button>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={() => {
+            localStorage.removeItem('isAuthenticated');
+            navigate('/order');
+            window.location.reload(); // Force refresh for state update
+          }}>
+            <FaSignOutAlt /> Sign Out
+          </button>
+        </nav>
+      </aside>
 
       {/* Orders Section */}
-      <main className="w-full md:w-3/4 p-6 bg-white shadow-md rounded-lg mt-6 md:mt-0 md:ml-6 sticky top-0">
+      <main className="w-full md:w-3/4 p-6 bg-white  rounded-lg mt-6 md:mt-0 md:ml-6 sticky top-0">
         <h2 className="text-2xl font-semibold">My Orders</h2>
 
         {/* Tabs */}
@@ -342,7 +368,7 @@ export default function MyOrders() {
             <p className="text-center text-gray-500">No orders found.</p>
           ) : (
             filteredOrders.map((order) => (
-              <div key={order.id} className="p-4 rounded-lg shadow-sm bg-white">
+              <div key={order.id} className="p-4 rounded-lg  bg-white">
                 <div className="flex flex-col md:flex-row justify-between bg-gray-100 p-4 rounded-lg gap-4">
                   <div>
                     <p className="font-semibold">Order no: #{order.id}</p>
@@ -363,27 +389,27 @@ export default function MyOrders() {
                       className="w-full md:w-26 md:h-35 object-cover rounded"
                     />
                     <div className="flex flex-row  gap-4 w-full">
-                    <div className="flex-1 items-center">
-                      <p className="font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-500">Colour: {item.color}</p>
-                      <p className="text-sm text-gray-500">Qty: {item.qty}</p>
-                      <p className="font-semibold">Total: ${item.price.toFixed(2)}</p>
-                      
-                    </div>
-                    <div className="text-center md:text-right mt-5 mr-3 ">
-                      {order.status.toLowerCase() === "completed" ? (
-                        <span className="text-green-500 text-2xl">✅</span>
-                      ) : order.status.toLowerCase() === "cancelled" ? (
-                        <span className="text-red-500">❌</span>
-                      ) : order.status.toLowerCase() === "in-progress" ? (
-                        <button
-                          onClick={() => handleOrderClick(order)}
-                          className="bg-[#8A33FD] text-white px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-md hover:bg-[#8A33FD]"
-                        >
-                          View Details
-                        </button>
-                      ) : null}
-                    </div>
+                      <div className="flex-1 items-center">
+                        <p className="font-medium">{item.name}</p>
+                        <p className="text-sm text-gray-500">Colour: {item.color}</p>
+                        <p className="text-sm text-gray-500">Qty: {item.qty}</p>
+                        <p className="font-semibold">Total: ${item.price.toFixed(2)}</p>
+
+                      </div>
+                      <div className="text-center md:text-right mt-5 mr-3 ">
+                        {order.status.toLowerCase() === "completed" ? (
+                          <span className="text-green-500 text-2xl">✅</span>
+                        ) : order.status.toLowerCase() === "cancelled" ? (
+                          <span className="text-red-500">❌</span>
+                        ) : order.status.toLowerCase() === "in-progress" ? (
+                          <button
+                            onClick={() => handleOrderClick(order)}
+                            className="bg-[#8A33FD] text-white px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-md hover:bg-[#8A33FD]"
+                          >
+                            View Details
+                          </button>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
                 ))}
