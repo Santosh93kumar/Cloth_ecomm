@@ -15,6 +15,10 @@ import Wishlist from "./component/Page/Wishlist"
 import MyOrders from './component/Page/MyOrder';
 import OrderDetails from "./component/Page/OrderDetails"
 import Checkout from "./component/Page/Checkout"
+import Password from "./component/Page/login/Password"
+import RestPassword from "./component/Page/login/ResetPassword"
+import Email from "./component/Page/login/Email"
+import Varification from "./component/Page/login/Verification"
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -88,15 +92,42 @@ const router = createBrowserRouter([
             </AuthWrapper>
         ),
     },
-    // {
-    //     path: '/forgot-password',
-    //     element: (
-    //         <>
-    //             <Navbar />
-    //             <Password />
-    //         </>
-    //     ),
-    // },
+    {
+        path: '/forgot-password',
+        element: (
+            <>
+                <Navbar />
+                <RestPassword />
+            </>
+        ),
+    },
+    {
+        path: '/email',
+        element: (
+            <>
+                <Navbar />
+                <Email />
+            </>
+        ),
+    },
+    {
+        path: '/varification',
+        element: (
+            <>
+                <Navbar />
+                <Varification />
+            </>
+        ),
+    },
+    {
+        path: '/reset-password',
+        element: (
+            <>
+                <Navbar />
+                <Password />
+            </>
+        ),
+    },
     {
         path: '/home',
         element: <AuthWrapper />,
@@ -111,6 +142,7 @@ const router = createBrowserRouter([
             { path: 'wishlist', element: <Wishlist /> },
             { path: 'orderdetails', element: <OrderDetails /> },
             { path: 'checkout', element: <Checkout /> },
+            {path: 'addressform',element: <AddressForm /> },
 
         ],
     },

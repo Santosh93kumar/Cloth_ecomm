@@ -327,10 +327,10 @@ export default function MyOrders() {
           <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
             <FaRegUser /> My Orders
           </button>
-          <button className="flex items-center gap-3 text-black font-bold">
-            <FaRegHeart onClick={()=>navigate('/home/wishlist')}/> Wishlist
+          <button className="flex items-center gap-3 text-black font-bold" onClick={()=>navigate('/home/wishlist')}>
+            <FaRegHeart /> Wishlist
           </button>
-          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate('/home/addressform')}>
             <FaRegUser /> My Info
           </button>
           <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={() => {

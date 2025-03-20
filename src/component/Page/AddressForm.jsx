@@ -1,7 +1,9 @@
 import React from 'react';
 import { FaRegUser, FaRegHeart, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const AddressForm = () => {
+  const navigate = useNavigate();
   return (
     <div className="mx-auto py-6 px-4 md:px-8 max-w-7xl">
       {/* Breadcrumb */}
@@ -22,16 +24,20 @@ const AddressForm = () => {
           <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
 
           <nav className="space-y-4">
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black w-full text-left">
+            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black w-full text-left" onClick={()=>navigate('/home/order')}>
               <FaRegUser /> My Orders
             </button>
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black w-full text-left">
+            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black w-full text-left" onClick={() => navigate('/home/wishlist')}>
               <FaRegHeart /> Wishlist
             </button>
             <button className="flex items-center gap-3 text-black font-bold w-full text-left">
               <FaRegUser /> My Info
             </button>
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black w-full text-left">
+            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black w-full text-left" onClick={() => {
+            localStorage.removeItem('isAuthenticated');
+            navigate('/');
+            window.location.reload(); // Force refresh for state update
+          }}>
               <FaSignOutAlt /> Sign Out
             </button>
           </nav>
