@@ -19,6 +19,8 @@ import Password from "./component/Page/login/Password"
 import RestPassword from "./component/Page/login/ResetPassword"
 import Email from "./component/Page/login/Email"
 import Varification from "./component/Page/login/Verification"
+import ContactDetails from "./component/Page/ContactDetails"
+import Confirmed from "./component/Page/Confirmed"
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -143,6 +145,8 @@ const router = createBrowserRouter([
             { path: 'orderdetails', element: <OrderDetails /> },
             { path: 'checkout', element: <Checkout /> },
             {path: 'addressform',element: <AddressForm /> },
+            {path:'contactdetails',element:<ContactDetails/>},
+            {path:'confiremd',element:<Confirmed/>}
 
         ],
     },

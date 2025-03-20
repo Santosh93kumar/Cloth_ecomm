@@ -71,7 +71,7 @@ const OrderDetails = () => {
           <button className="flex items-center gap-3 " onClick={() => navigate('/home/wishlist')}>
             <FaRegHeart  /> Wishlist
           </button>
-          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate('/home/addressform')}>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate('/home/contactdetails')}>
             <FaRegUser /> My Info
           </button>
           <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={() => {
