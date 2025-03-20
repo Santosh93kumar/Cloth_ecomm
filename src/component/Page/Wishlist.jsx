@@ -10,6 +10,9 @@ import product3 from "../Image/product3.png";
 const Wishlist = () => {
   const navigate = useNavigate();
 
+  // console.log("handleLogout in Wishlist:", handleLogout);
+
+
   // Wishlist items
   const [wishlistItems, setWishlistItems] = useState([]);
 
@@ -23,7 +26,7 @@ const Wishlist = () => {
 
   const toggleWishlist = (product) => {
     const isAlreadyInWishlist = wishlistItems.some((item) => item.id === product.id);
-    
+
     if (isAlreadyInWishlist) {
       setWishlistItems(wishlistItems.filter((item) => item.id !== product.id));
       toast.error("Removed from Wishlist");
@@ -41,38 +44,42 @@ const Wishlist = () => {
   return (
     <div className="mx-auto py-10 px-8">
       <ToastContainer position="top-right" autoClose={2000} />
-      
+
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6">
-        <span className="cursor-pointer hover:underline" onClick={() => navigate("/")}>Home</span> &gt; 
-        <span className="cursor-pointer hover:underline" onClick={() => navigate("/account")}>My Account</span> &gt; 
+        <span className="cursor-pointer hover:underline" onClick={() => navigate("/")}>Home</span> &gt;
+        <span className="cursor-pointer hover:underline" onClick={() => navigate("/account")}>My Account</span> &gt;
         <span className="text-black">Wishlist</span>
       </nav>
-      
+
 
       <div className="flex flex-col md:flex-row gap-10">
-      <aside className="w-full md:w-1/4 p-6 border-r border-gray-200">
-         <h2 className="text-2xl font-bold flex items-center gap-2">
-           <span className="w-2 h-6 bg-purple-500 rounded-full"></span> Hello Janvi
-         </h2>
-         <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
+        <aside className="w-full md:w-1/4 p-6 border-r border-gray-200">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            <span className="w-2 h-6 bg-purple-500 rounded-full"></span> Hello Janvi
+          </h2>
+          <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
 
-         <nav className="space-y-4">
-           <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
-             <FaRegUser /> My Orders
-           </button>
-           <button className="flex items-center gap-3 text-black font-bold">
-             <FaRegHeart /> Wishlist
-           </button>
-           <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
-             <FaRegUser /> My Info
-           </button>
-           <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
-             <FaSignOutAlt /> Sign Out
-           </button>
-         </nav>
-       </aside>
-        
+          <nav className="space-y-4">
+            <button className="flex items-center gap-3  " onClick={()=>navigate("/home/order")}>
+              <FaRegUser /> My Orders
+            </button>
+            <button className="flex items-center gap-3 text-black font-bold">
+              <FaRegHeart /> Wishlist
+            </button>
+            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate('/home/contactdetails')}>
+              <FaRegUser /> My Info
+            </button>
+            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={() => {
+              localStorage.removeItem('isAuthenticated');
+              navigate('/');
+              window.location.reload(); // Force refresh for state update
+            }}>
+              <FaSignOutAlt /> Sign Out
+            </button>
+          </nav>
+        </aside>
+
         {/* Wishlist Content */}
         <div className="flex-1 p-6">
           <h2 className="text-2xl font-bold mb-4">Wishlist</h2>
@@ -112,7 +119,7 @@ const Wishlist = () => {
         <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
           <span className="w-2 h-6 bg-purple-500 rounded-full"></span>Recently Viewed
         </h2>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {recentlyViewed.map((product) => (
             <div key={product.id} className="rounded-xl p-4 relative">
@@ -126,7 +133,7 @@ const Wishlist = () => {
                   <FaRegHeart className="text-gray-400 text-xl" />
                 )}
               </button>
-              
+
               <img src={product.image} alt={product.name} className="w-full h-64 object-cover rounded-lg" />
               <div className="mt-3 flex place-content-between text-[#3C4242]">
                 <div>

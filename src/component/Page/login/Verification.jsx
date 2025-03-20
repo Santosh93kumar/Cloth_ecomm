@@ -1,10 +1,12 @@
 import React from 'react'
 import email2 from "../../Image/email2.png"
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Verification() {
   const [code, setCode] = useState('0757');
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setCode(e.target.value);
@@ -39,7 +41,7 @@ export default function Verification() {
         />
       </div>
       
-      <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-6 rounded transition duration-200">
+      <button className="bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 px-6 rounded transition duration-200" onClick={()=>navigate('/reset-password')}>
         Verify Code
       </button>
     </div>

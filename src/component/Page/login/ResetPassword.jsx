@@ -1,10 +1,12 @@
 import { useState } from "react";
 import forgetPasswordImage from "../../Image/ForgetPasswordImage.png"
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,6 +70,7 @@ const ResetPassword = () => {
             <button
               type="submit"
               className="bg-purple-600 text-white p-4 rounded-lg hover:bg-purple-700 transition"
+              onClick={()=>navigate('/email')}
             >
               Send
             </button>
@@ -76,7 +79,7 @@ const ResetPassword = () => {
           {/* Back to Login */}
           <p className="mt-4 text-sm">
             Back to{" "}
-            <a href="/login" className="text-purple-600 hover:underline">
+            <a href="/signin" className="text-purple-600 hover:underline" onClick={()=>navigate("/signin")}>
               Login
             </a>
           </p>

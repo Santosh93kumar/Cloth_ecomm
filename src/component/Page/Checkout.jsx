@@ -3,8 +3,12 @@ import product1 from "../Image/product1.png";
 import product2 from "../Image/product2.png";
 import product3 from "../Image/product3.png";
 import { FaRegEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+
+  const navigate= useNavigate()
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -241,7 +245,7 @@ const [selectedAddress, setSelectedAddress] = useState("same");
       </label>
 
       {/* Pay Now Button */}
-      <button className="mt-6 p-4 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-md">
+      <button className="mt-6 p-4 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-md" onClick={()=>navigate('/home/confirmed')}>
         Pay Now
       </button>
     </div>

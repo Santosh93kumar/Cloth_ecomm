@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import email from "../../Image/email1.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Email() {
+
+  const navigate= useNavigate()
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
             {/* Left Section - Image */}
@@ -21,10 +25,10 @@ export default function Email() {
             Check Email
           </h1>
           
-          <p className="text-gray-600 text-sm mb-2 leading-relaxed">
+          <p className="text-gray-600 text-sm mb-2 leading-relaxed" onClick={()=>navigate('/varification')}>
             Please check your email inbox and click on the provided link to reset your 
             password. If you don't receive email,{' '}
-            <Link to="/resend" className="text-purple-600 hover:underline font-medium">
+            <Link to="/resend" className="text-purple-600 hover:underline font-medium" >
               Click here to resend
             </Link>
           </p>

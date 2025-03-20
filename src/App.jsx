@@ -11,6 +11,16 @@ import ShoppingCart from './component/Page/ShoppingCart';
 import Confirmed from './component/Page/Confirmed';
 import AddressForm from './component/Page/AddressForm';
 import Applayout from './component/Applayout';
+import Wishlist from "./component/Page/Wishlist"
+import MyOrders from './component/Page/MyOrder';
+import OrderDetails from "./component/Page/OrderDetails"
+import Checkout from "./component/Page/Checkout"
+import Password from "./component/Page/login/Password"
+import RestPassword from "./component/Page/login/ResetPassword"
+import Email from "./component/Page/login/Email"
+import Varification from "./component/Page/login/Verification"
+import ContactDetails from "./component/Page/ContactDetails"
+import Confirmed from "./component/Page/Confirmed"
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -30,33 +40,20 @@ function AuthWrapper({ children }) {
         navigate('/');
     };
 
-    return isAuthenticated ? (
+    return (
         <>
-            <Applayout />
-            <button onClick={handleLogout} className="logout-btn">
-                Logout
-            </button>
+            {isAuthenticated ? (
+                <>
+                    <Applayout handleLogout={handleLogout}/>
+                </>
+            ) : (
+                children(handleLoginSuccess)
+            )}
         </>
-    ) : (
-        children(handleLoginSuccess)
     );
 }
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: (
-            <AuthWrapper>
-                {(handleLoginSuccess) => (
-                    <>
-                        <Navbar />
-                        <SignIn onLoginSuccess={handleLoginSuccess} />
-                    </>
-                )}
-            </AuthWrapper>
-        ),
-        errorElement: <Errorpage />,
-    },
     {
         path: '/sign-up',
         element: (
@@ -65,6 +62,20 @@ const router = createBrowserRouter([
                     <>
                         <Navbar />
                         <SignUp onSignUpSuccess={handleLoginSuccess} />
+                    </>
+                )}
+            </AuthWrapper>
+        ),
+        errorElement: <Errorpage />,
+    },
+    {
+        path: '/',
+        element: (
+            <AuthWrapper>
+                {(handleLoginSuccess) => (
+                    <>
+                        <Navbar />
+                        <SignIn onLoginSuccess={handleLoginSuccess} />
                     </>
                 )}
             </AuthWrapper>
@@ -84,8 +95,44 @@ const router = createBrowserRouter([
         ),
     },
     {
+        path: '/forgot-password',
+        element: (
+            <>
+                <Navbar />
+                <RestPassword />
+            </>
+        ),
+    },
+    {
+        path: '/email',
+        element: (
+            <>
+                <Navbar />
+                <Email />
+            </>
+        ),
+    },
+    {
+        path: '/varification',
+        element: (
+            <>
+                <Navbar />
+                <Varification />
+            </>
+        ),
+    },
+    {
+        path: '/reset-password',
+        element: (
+            <>
+                <Navbar />
+                <Password />
+            </>
+        ),
+    },
+    {
         path: '/home',
-        element: <AuthWrapper>{() => <Outlet />}</AuthWrapper>,
+        element: <AuthWrapper />,
         errorElement: <Errorpage />,
         children: [
             { index: true, element: <HeroSection /> },
@@ -93,7 +140,14 @@ const router = createBrowserRouter([
             { path: 'product-detail', element: <ProductDetail /> },
             { path: 'cart', element: <ShoppingCart /> },
             { path: 'confirmed', element: <Confirmed /> },
-            { path: 'address', element: <AddressForm /> },
+            { path: 'order', element: <MyOrders /> },
+            { path: 'wishlist', element: <Wishlist /> },
+            { path: 'orderdetails', element: <OrderDetails /> },
+            { path: 'checkout', element: <Checkout /> },
+            {path: 'addressform',element: <AddressForm /> },
+            {path:'contactdetails',element:<ContactDetails/>},
+            {path:'confiremd',element:<Confirmed/>}
+
         ],
     },
 ]);
