@@ -73,7 +73,7 @@ const router = createBrowserRouter([
                 {(handleLoginSuccess) => (
                     <>
                         <Navbar />
-                        <SignUp onSignUpSuccess={handleLoginSuccess} />
+                        <SignIn onLoginSuccess={handleLoginSuccess} />
                     </>
                 )}
             </AuthWrapper>

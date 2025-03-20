@@ -84,7 +84,7 @@ const OrderDetails = () => {
         </nav>
       </aside>
 
-      <main className="w-full md:w-3/4 p-6 bg-white shadow-md rounded-lg mt-6 md:mt-0 md:ml-6">
+      <main className="w-full md:w-3/4 p-6 bg-white  rounded-lg mt-6 md:mt-0 md:ml-6">
         <div className="p-4 md:p-6 max-w-3xl mx-auto">
 
           <h1 className="text-2xl font-semibold  mb-4 flex items-center gap-2" onClick={() => navigate("/home/order")}><FaAngleLeft sixe={25} />Order Details</h1>

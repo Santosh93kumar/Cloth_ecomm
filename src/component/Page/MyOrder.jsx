@@ -344,7 +344,7 @@ export default function MyOrders() {
       </aside>
 
       {/* Orders Section */}
-      <main className="w-full md:w-3/4 p-6 bg-white shadow-md rounded-lg mt-6 md:mt-0 md:ml-6 sticky top-0">
+      <main className="w-full md:w-3/4 p-6 bg-white  rounded-lg mt-6 md:mt-0 md:ml-6 sticky top-0">
         <h2 className="text-2xl font-semibold">My Orders</h2>
 
         {/* Tabs */}
@@ -368,7 +368,7 @@ export default function MyOrders() {
             <p className="text-center text-gray-500">No orders found.</p>
           ) : (
             filteredOrders.map((order) => (
-              <div key={order.id} className="p-4 rounded-lg shadow-sm bg-white">
+              <div key={order.id} className="p-4 rounded-lg  bg-white">
                 <div className="flex flex-col md:flex-row justify-between bg-gray-100 p-4 rounded-lg gap-4">
                   <div>
                     <p className="font-semibold">Order no: #{order.id}</p>
