@@ -354,6 +354,7 @@ const HeroSection = () => {
 </div>
 
 {/* CategoryMen */}
+<section id="men">
 <div className="mx-auto p-6">
       
       <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
@@ -381,6 +382,7 @@ const HeroSection = () => {
         ))}
       </div>
     </div>
+    </section>
 
     {/* categoryWomen */}
 
