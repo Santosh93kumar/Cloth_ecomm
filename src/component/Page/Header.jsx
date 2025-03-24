@@ -11,15 +11,15 @@ const Header = () => {
     <header className="bg-white shadow-md p-4 md:p-6 w-full">
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-xl font-bold cursor-pointer" onClick={() => navigate("/home")}>
-          <span className="italic">Euphoria</span>
+          <span className="italic" onClick={()=>navigate('/home')}>Euphoria</span>
         </div>
 
         <nav className="hidden md:flex space-x-6 text-[#807D7E] font-medium">
-          <a href="#" className="hover:text-black" onClick={()=>navigate('/home')}>Shop</a>
-          <a href="#" className="hover:text-black">Men</a>
-          <a href="#" className="hover:text-black" onClick={()=>navigate('/home/product-list')}>Women</a>
-          <a href="#" className="hover:text-black">Combos</a>
-          <a href="#" className="hover:text-black">Joggers</a>
+          <a href="#" className="hover:text-black" onClick={()=>navigate('/home/product-list')}>Shop</a>
+          <a href="#" className="hover:text-black" >Men</a>
+          <a href="#" className="hover:text-black" >Women</a>
+          <a href="#" className="hover:text-black" onClick={()=>navigate('/home/product-list')}>Products</a>
+          <a href="#" className="hover:text-black"onClick={()=>navigate('/home/order')}>Orders</a>
         </nav>
 
         <div className="hidden md:flex items-center bg-gray-100 px-4 py-2 rounded-lg w-72">

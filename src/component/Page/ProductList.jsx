@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, ChevronDown, ChevronUp, ChevronRight } from 'lucide-react';
-import im1 from "../Image/Rectangle 25.png";
-import im2 from "../Image/product1.png";
-import im3 from "../Image/product2.png";
-import im4 from "../Image/product3.png";
-import im5 from "../Image/product4.png";
-import filter from '../Image/filter.png'
+import filter from '../Image/filter.png';
 import { useNavigate } from 'react-router-dom';
+import productData from '../Page/productData';
 
 const ProductList = () => {
-
-  const navigate=useNavigate()
-
+  const navigate = useNavigate();
+  const products = productData.products || [];
+  const categories = productData.categories || [];
+  const colors = productData.colors || [];
+  const sizes = productData.sizes || [];
+  const dressStyles = productData.dressStyles || [];
+  const clothingItems = productData.clothingItems || [];
   const [priceRange, setPriceRange] = useState([10, 400]);
   const [isDragging, setIsDragging] = useState(null);
   const [expandedSections, setExpandedSections] = useState({
@@ -30,7 +30,8 @@ const ProductList = () => {
 
   const [favorites, setFavorites] = useState([]);
 
-  const toggleFavorite = (id) => {
+  const toggleFavorite = (e, id) => {
+    e.stopPropagation(); // Prevent navigating to product detail when clicking the heart
     if (favorites.includes(id)) {
       setFavorites(favorites.filter(item => item !== id));
     } else {
@@ -38,162 +39,12 @@ const ProductList = () => {
     }
   };
 
-  const products = [
-    {
-      id: 1,
-      name: "White T-shirt",
-      brand: "Helen's Brand",
-      price: 11.00,
-      image: im1,
-      background: "bg-teal-200"
-    },
-    {
-      id: 2,
-      name: "Lavender Hoodie with Drawstrings",
-      brand: "Nia's Brand",
-      price: 19.00,
-      image: im2,
-      background: "bg-pink-300"
-    },
-    {
-      id: 3,
-      name: "Denim Jacket",
-      brand: "Urban Wear",
-      price: 35.00,
-      image: im3,
-      background: "bg-blue-200"
-    },
-    {
-      id: 4,
-      name: "Black Slim Fit Jeans",
-      brand: "Classic Denim",
-      price: 29.00,
-      image: im4,
-      background: "bg-gray-300"
-    },
-    {
-      id: 5,
-      name: "Red Summer Dress",
-      brand: "Ella's Closet",
-      price: 27.00,
-      image: im1,
-      background: "bg-red-200"
-    },
-    {
-      id: 6,
-      name: "Leather Wallet",
-      brand: "Prestige",
-      price: 15.00,
-      image: im4,
-      background: "bg-brown-300"
-    },
-    {
-      id: 7,
-      name: "Running Shoes",
-      brand: "ActiveX",
-      price: 45.00,
-      image: im5,
-      background: "bg-yellow-200"
-    },
-    {
-      id: 8,
-      name: "Smartwatch",
-      brand: "TechGear",
-      price: 59.00,
-      image: im3,
-      background: "bg-purple-300"
-    },
-    {
-      id: 9,
-      name: "Cotton Pajamas Set",
-      brand: "CozyWear",
-      price: 22.00,
-      image: im2,
-      background: "bg-green-200"
-    },
-    {
-      id: 10,
-      name: "Grey Beanie",
-      brand: "WinterCo",
-      price: 10.00,
-      image: im1,
-      background: "bg-gray-400"
-    },
-    {
-      id: 11,
-      name: "Brown Leather Belt",
-      brand: "FormalX",
-      price: 18.00,
-      image: im2,
-      background: "bg-orange-300"
-    },
-    {
-      id: 12,
-      name: "Oversized Graphic T-shirt",
-      brand: "TrendyStyles",
-      price: 20.00,
-      image: im4,
-      background: "bg-indigo-200"
-    }
-  ];
-
-
-
-
-  const categories = [
-    { name: "Printed T-shirts", link: "/" },
-    { name: "Plain T-shirts", link: "/" },
-    { name: "Kurta", link: "/" },
-    { name: "Boxers", link: "/" },
-    { name: "Full sleeves T-shirts", link: "/" },
-    { name: "Joggers", link: "/" },
-    { name: "Shorts", link: "/" }
-  ];
-
-  const colors = [
-    { name: "Purple", hex: "#9C27B0" },
-    { name: "Black", hex: "#000000" },
-    { name: "Red", hex: "#F44336" },
-    { name: "Orange", hex: "#FF9800" },
-    { name: "Royal", hex: "#3F51B5" },
-    { name: "White", hex: "#FFFFFF" },
-    { name: "Brown", hex: "#795548" },
-    { name: "Green", hex: "#4CAF50" },
-    { name: "Yellow", hex: "#FFEB3B" },
-    { name: "Navy", hex: "#1A237E" },
-    { name: "Pink", hex: "#E91E63" },
-    { name: "Blue", hex: "#03A9F4" }
-  ];
-
-  const sizes = ["XXS", "XL", "XS", "S", "L", "XXL", "3XL", "4XL"];
-
-  const dressStyles = [
-    { name: "Classic", link: "/" },
-    { name: "Casual", link: "/" },
-    { name: "Business", link: "/" },
-    { name: "Sport", link: "/" },
-    { name: "Formal (evening)", link: "/" }
-  ];
-
-  const clothingItems = [
-    { name: "Pick Any 4- Womens Plain T-shirt Combo", price: "₹1099" },
-    { name: "Pick Any 4- Plain Womens Boxer Combo", price: "₹1099" },
-    { name: "Pick Any 4 - Women Plain Full Sleeve T-shirt Combo", price: "₹1399" },
-    { name: "Multicolor Checkered Long Casual Shirts for Women", price: "₹499" },
-    { name: "Pick Any 2: Plain Boxy Casual Shirts for Women Combo", price: "₹799" },
-    { name: "Blue Floral Anarkali Kurti", price: "₹599" },
-    { name: "Jade Black Narrow Cut Flexible Women Jeggings", price: "₹998" },
-    { name: "Mustard-yellow Solid Straight-Fit Women Pant", price: "₹499" },
-    { name: "Women Pants Combo - Pick Any 2", price: "₹800" },
-    { name: "Pista Green Solid Boxy Casual Shirts for Women", price: "₹449" },
-    { name: "Plain Burgundy Womens Boxer", price: "₹349" },
-    { name: "Striped Front Tie Casual Shirts for Women", price: "₹449" }
-  ];
-
-
-  
-
-
+  // Modified to pass product data to detail page
+  const goToProductDetail = (product) => {
+    navigate(`/home/product-detail/${product.id}`, { 
+      state: { productData: product }
+    });
+  };
 
   const toggleSection = (section) => {
     setExpandedSections({
@@ -281,17 +132,13 @@ const ProductList = () => {
     }
   }, [isDragging]);
 
-
-  
   const FilterSidebar = () => {
     return (
-      <div className="w-full md:w-64 flex-shrink-0 bg-white rounded-lg shadow-sm overflow-hidden ">
+      <div className="w-full md:w-64 flex-shrink-0 bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="border-b border-gray-200">
           <div className="p-4 flex justify-between items-center">
             <h3 className="text-lg font-medium text-gray-900">Filter</h3>
-
-            <img src={filter} alt="filter" className='w-6 h-6' />
-
+            <img src={filter} alt="filter" className="w-6 h-6" />
           </div>
         </div>
 
@@ -313,7 +160,7 @@ const ProductList = () => {
               <div key={index} className="flex justify-between items-center py-2">
                 <label className="flex items-center text-gray-600 cursor-pointer">
                   <input
-                    // type="checkbox" 
+                    type="checkbox"
                     className="mr-2 h-4 w-4 text-blue-500"
                     checked={selectedCategories.includes(category.name)}
                     onChange={() => toggleCategory(category.name)}
@@ -459,7 +306,7 @@ const ProductList = () => {
               <div key={index} className="flex justify-between items-center py-2">
                 <label className="flex items-center text-gray-600 cursor-pointer">
                   <input
-                    // type="checkbox" 
+                    type="checkbox"
                     className="mr-2 h-4 w-4 text-blue-500"
                     checked={selectedStyles.includes(style.name)}
                     onChange={() => toggleStyle(style.name)}
@@ -528,8 +375,7 @@ const ProductList = () => {
       </div>
     );
   };
-
-
+  
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -540,12 +386,8 @@ const ProductList = () => {
 
           {/* Product Grid and Content */}
           <div className="flex-grow">
-
             <div className="mb-4 flex justify-between items-center">
-
               <h2 className="text-gray-900 font-medium">Women's Clothing</h2>
-
-
               <div className="flex gap-4">
                 <button className="text-purple-600 font-medium transition duration-300">
                   New
@@ -556,24 +398,23 @@ const ProductList = () => {
               </div>
             </div>
 
-
             {/* Product Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                  onClick={() => goToProductDetail(product)} // Pass the entire product object
                 >
-
-                  <div className="relative rounded-t-lg overflow-hidden" onClick={()=>navigate('/home/product-detail')}>
+                  <div className="relative rounded-t-lg overflow-hidden">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-[470px] object-cover"
+                      className="w-full h-64 object-cover"
                     />
-
                     <button
-                      onClick={() => toggleFavorite(product.id)}
+                      onClick={(e) => toggleFavorite(e, product.id)}
                       className="absolute top-2 right-2 p-2 rounded-full bg-white/80 shadow"
                       aria-label="Add to favorites"
                     >
@@ -584,8 +425,6 @@ const ProductList = () => {
                       />
                     </button>
                   </div>
-
-
                   <div className="p-4 flex justify-between items-center">
                     <div>
                       <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
@@ -595,21 +434,19 @@ const ProductList = () => {
                       <p className="text-xs font-semibold">${product.price.toFixed(2)}</p>
                     </div>
                   </div>
-
                 </div>
               ))}
             </div>
-
           </div>
-
         </div>
+        
         {/* Product Information Section */}
-        <div className=" mx-auto px-4 py-8 font-sans">
+        <div className="mx-auto px-4 py-8 font-sans">
           <div className="border-l-4 border-purple-600 pl-4 mb-8">
             <h2 className="text-4xl font-bold text-gray-700 mb-2">Clothing for Women Online in India</h2>
           </div>
 
-          <section className=" m-5">
+          <section className="m-5">
             <h2 className="text-2xl text-gray-600 font-medium mb-6">Reexplore Women's Clothing Collection Online at Euphoria</h2>
 
             <div className="text-gray-600 leading-relaxed mb-6">
@@ -623,7 +460,7 @@ const ProductList = () => {
             </div>
           </section>
 
-          <section className=" m-5">
+          <section className="m-5">
             <h2 className="text-2xl text-gray-600 font-medium mb-6">One-Stop Destination to Shop Every Clothing for Women: Euphoria</h2>
 
             <div className="text-gray-600 leading-relaxed mb-6">
@@ -636,7 +473,7 @@ const ProductList = () => {
               </p>
             </div>
 
-            <button className="text-gray-600 font-medium  rounded-md transition duration-300">
+            <button className="text-gray-600 font-medium rounded-md transition duration-300">
               See More
             </button>
           </section>
@@ -649,12 +486,10 @@ const ProductList = () => {
           </div>
 
           <div className="bg-gray-50 m-5 rounded-sm">
-
             <div className="grid grid-cols-[2fr_1fr] font-medium text-gray-700 border-b border-gray-300">
               <div className="p-6 text-xl">Women's Clothing</div>
               <div className="p-6 text-xl border-l border-gray-300 text-right">Best Price</div>
             </div>
-
 
             {clothingItems.map((item, index) => (
               <div
@@ -667,8 +502,6 @@ const ProductList = () => {
             ))}
           </div>
         </div>
-
-
       </main>
     </div>
   );

@@ -20,7 +20,8 @@ import RestPassword from "./component/Page/login/ResetPassword"
 import Email from "./component/Page/login/Email"
 import Varification from "./component/Page/login/Verification"
 import ContactDetails from "./component/Page/ContactDetails"
-import Confirmed from "./component/Page/Confirmed"
+import ErrorPage from './component/Page/Errorpage';
+// import Confirmed from "./component/Page/Confirmed"
 
 function AuthWrapper({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -133,11 +134,12 @@ const router = createBrowserRouter([
     {
         path: '/home',
         element: <AuthWrapper />,
-        errorElement: <Errorpage />,
+        errorElement: <ErrorPage />,
         children: [
             { index: true, element: <HeroSection /> },
             { path: 'product-list', element: <ProductList /> },
-            { path: 'product-detail', element: <ProductDetail /> },
+         
+            { path: 'product-detail/:id', element: <ProductDetail /> },
             { path: 'cart', element: <ShoppingCart /> },
             { path: 'confirmed', element: <Confirmed /> },
             { path: 'order', element: <MyOrders /> },
