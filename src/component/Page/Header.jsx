@@ -14,11 +14,11 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex space-x-6 text-[#807D7E] font-medium">
-          <a href="#" className="hover:text-black" onClick={()=>navigate('/home')}>Shop</a>
-          <a href="#" className="hover:text-black">Men</a>
-          <a href="#" className="hover:text-black" onClick={()=>navigate('/home/product-list')}>Women</a>
-          <a href="#" className="hover:text-black">Combos</a>
-          <a href="#" className="hover:text-black">Joggers</a>
+          <a href="#" className="hover:text-black" onClick={()=>navigate('/home/product-list')}>Shop</a>
+          <a href="/home#Men" className="hover:text-black" >Men</a>
+          <a href="/home#Women" className="hover:text-black">Women</a>
+          <a href="#" className="hover:text-black" onClick={()=>navigate("/home/product-list")}>Products</a>
+          <a href="#" className="hover:text-black" onClick={()=>navigate("/home/order")}>MyOrders</a>
         </nav>
 
         <div className="hidden md:flex items-center bg-gray-100 px-4 py-2 rounded-lg w-72">

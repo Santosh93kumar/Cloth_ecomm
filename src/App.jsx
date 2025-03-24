@@ -141,6 +141,8 @@ const router = createBrowserRouter([
         errorElement: <Errorpage />,
         children: [
             { index: true, element: <HeroSection /> },
+            {path:"signin",element:<SignIn/>},
+            {path:"siginup", element:<SignUp/>},
             { path: 'product-list', element: <ProductList /> },
             { path: 'product-detail', element: <ProductDetail /> },
             { path: 'cart', element: <ShoppingCart /> },

@@ -61,7 +61,7 @@ const ShoppingCart = () => {
    
       <div className="mb-8 text-md text-gray-500 px-20">
         <p className="mb-1">Please fill in the fields below and click place order to complete your purchase!</p>
-        <p>Already registered? <a href="#" className="text-purple-600 hover:underline">Please login here</a></p>
+        <p>Already registered? <a href="#" className="text-purple-600 hover:underline" onClick={()=>navigate('/home/signin')} >Please login here</a></p>
       </div>
 
       {/* Cart Table */}

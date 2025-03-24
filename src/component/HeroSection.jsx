@@ -354,7 +354,7 @@ const HeroSection = () => {
 </div>
 
 {/* CategoryMen */}
-<div className="mx-auto p-6">
+<div className="mx-auto p-6" id="Men">
       
       <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
       <span className="w-2 h-6 bg-purple-500 rounded-full"></span>
@@ -384,7 +384,7 @@ const HeroSection = () => {
 
     {/* categoryWomen */}
 
-    <div className="mx-auto p-6">
+    <div className="mx-auto p-6" id="Women">
       <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
       <span className="w-2 h-6 bg-purple-500 rounded-full"></span>
         Categories For Women
