@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import SignIn from './component/Page/login/SignIn';
 import SignUp from './component/Page/login/SignUp';
@@ -8,7 +8,7 @@ import HeroSection from './component/HeroSection';
 import ProductList from './component/Page/ProductList';
 import ProductDetail from './component/Page/ProductDetail';
 import ShoppingCart from './component/Page/ShoppingCart';
-import Confirmed from './component/Page/Confirmed';
+// import Confirmed from './component/Page/Confirmed';
 import AddressForm from './component/Page/AddressForm';
 import Applayout from './component/Applayout';
 import Wishlist from "./component/Page/Wishlist"
@@ -32,21 +32,20 @@ function AuthWrapper({ children }) {
     const handleLoginSuccess = () => {
         setIsAuthenticated(true);
         localStorage.setItem('isAuthenticated', 'true');
-        navigate('/home');
+        navigate('/home'); // Redirect to '/home' after login
     };
 
     const handleLogout = () => {
         setIsAuthenticated(false);
         localStorage.removeItem('isAuthenticated');
-        navigate('/');
+        navigate('/'); // Redirect to '/' after logout
     };
 
     return (
         <>
             {isAuthenticated ? (
-                <>
-                    <Applayout handleLogout={handleLogout}/>
-                </>
+                // Redirect to '/home' if authenticated and accessing '/'
+                window.location.pathname === '/' ? <Navigate to="/home" /> : <Applayout handleLogout={handleLogout} />
             ) : (
                 children(handleLoginSuccess)
             )}
@@ -81,6 +80,7 @@ const router = createBrowserRouter([
                 )}
             </AuthWrapper>
         ),
+        errorElement: <Errorpage />,
     },
     {
         path: '/signin',
@@ -94,6 +94,7 @@ const router = createBrowserRouter([
                 )}
             </AuthWrapper>
         ),
+        errorElement: <Errorpage />,
     },
     {
         path: '/forgot-password',
@@ -103,6 +104,7 @@ const router = createBrowserRouter([
                 <RestPassword />
             </>
         ),
+        errorElement: <Errorpage />,
     },
     {
         path: '/email',
@@ -112,6 +114,7 @@ const router = createBrowserRouter([
                 <Email />
             </>
         ),
+        errorElement: <Errorpage />,
     },
     {
         path: '/varification',
@@ -121,6 +124,7 @@ const router = createBrowserRouter([
                 <Varification />
             </>
         ),
+        errorElement: <Errorpage />,
     },
     {
         path: '/reset-password',
@@ -130,6 +134,7 @@ const router = createBrowserRouter([
                 <Password />
             </>
         ),
+        errorElement: <Errorpage />,
     },
     {
         path: '/home',
@@ -146,10 +151,9 @@ const router = createBrowserRouter([
             { path: 'wishlist', element: <Wishlist /> },
             { path: 'orderdetails', element: <OrderDetails /> },
             { path: 'checkout', element: <Checkout /> },
-            {path: 'addressform',element: <AddressForm /> },
-            {path:'contactdetails',element:<ContactDetails/>},
-            {path:'confiremd',element:<Confirmed/>}
-
+            { path: 'addressform', element: <AddressForm /> },
+            { path: 'contactdetails', element: <ContactDetails /> },
+            { path: 'confiremd', element: <Confirmed /> },
         ],
     },
 ]);
