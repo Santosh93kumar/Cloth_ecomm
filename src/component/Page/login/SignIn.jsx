@@ -44,7 +44,7 @@ const SignIn = ({ onLoginSuccess }) => { // Add onLoginSuccess prop
             {/* Left Section - Image */}
             <div className="hidden md:block md:w-1/2 bg-contain bg-center bg-no-repeat">
                 <img 
-                    src="https://s3-alpha-sig.figma.com/img/d9c7/44e3/7957a494304dd200153b27e7be069984?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=kmTdR~hLspVdeQ2YcREMFk1EJAmgNHceeCCk7OCZ4TRCGSR0TG6TO7QfWR7o-V4T9fi-r6N~roDYnWKg8W~BBEIbbWUOSTLts3H7vS7AdL~ChmPUeSRue8-KD0kjSm4vOM6I-RmGxmlGwrlo3E9hEKZ4P~atfItGEK47kjIcgi1ZQGLlVuGN9XqM-~YN7nudlsgci6hEA~FKavUHAe2WsbJbPNy-SfbAu-F0TjUasP9A6hbKDenIpKmRe4dTTcAT4LuQ~311kIxL4fvTL7FnahFC1pCp0Xld-D6uLwAzpMY2ukdX4TI0aAwccawihT2hKEce2darsVu4VBGKRgDTHA__" 
+                    src="https://s3-alpha-sig.figma.com/img/d9c7/44e3/7957a494304dd200153b27e7be069984?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HsfH5SIrcxUKWFj3utsKaJ108hWKRiO00gnDVmNt-uGld~M3WsdW-N05iCZ-JEizbbjml7Pe2nGQXZqgUf~2mIutXtsf23bVvseAZVh83FOGZWh22cYfobrjizNH9-WM6zN-54l5SHStiYfrclCUZZdrcPJW1~blsrPQN6l9H-U-pcad7y8Sm4Vj5Uy3T28zV65XGlC6gueg6P-Gpai18fODn6PcDJxC9XvAS5lrOYt4I4jefvwbhO0iJXKQkN4Ng-vHfx34u157UJIJhMuFIR-ZK6TjTc02r9pSoJdH6uo5H3LwtHytOgo1C60oCIXuQTVfN355tuGgLUnpmVRk3Q__" 
                     className="h-full w-full object-cover" 
                     alt="Background"
                 />
