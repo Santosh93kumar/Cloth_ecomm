@@ -91,27 +91,31 @@ export default function ContactDetails() {
 
       <div className="flex flex-col md:flex-row gap-10">
         {/* Sidebar */}
-        <aside className="w-full md:w-1/4 p-6 border-r border-gray-200">
+         <aside className="w-full md:w-1/4 p-6 border-r border-gray-200">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <span className="w-2 h-6 bg-purple-500 rounded-full"></span> Hello Janvi
         </h2>
-          <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
+        <p className="text-sm text-gray-500 mb-6">Welcome to your Account</p>
 
-          <nav className="space-y-4">
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
-              <FaRegUser /> My Orders
-            </button>
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
-              <FaRegHeart /> Wishlist
-            </button>
-            <button className="flex items-center gap-3 text-black font-bold">
-              <FaRegUser /> My Info
-            </button>
-            <button className="flex items-center gap-3 text-[#807D7E] hover:text-black">
-              <FaSignOutAlt /> Sign Out
-            </button>
-          </nav>
-        </aside>
+        <nav className="space-y-4">
+          <button className="flex items-center gap-3 text-black font-bold" onClick={()=>navigate('/home/order')}>
+            <FaRegUser /> My Orders
+          </button>
+          <button className="flex items-center gap-3 " onClick={()=>navigate('/home/wishlist')}>
+            <FaRegHeart /> Wishlist
+          </button>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={()=>navigate('/home/contactdetails')}>
+            <FaRegUser /> My Info
+          </button>
+          <button className="flex items-center gap-3 text-[#807D7E] hover:text-black" onClick={() => {
+            localStorage.removeItem('isAuthenticated');
+            navigate('/order');
+            window.location.reload(); // Force refresh for state update
+          }}>
+            <FaSignOutAlt /> Sign Out
+          </button>
+        </nav>
+      </aside>
 
         {/* Main Content */}
         <main className="w-full md:w-3/4">
@@ -150,7 +154,7 @@ export default function ContactDetails() {
           {/* Address Section */}
           <h2 className="text-2xl font-bold mt-10 mb-6 flex justify-between text-[#3C4242]">
             Address
-            <Link  className="px-4 py-2 text-[#3C4242] text-sm" onClick={()=>navigate('/home/addressform')}>Add New</Link>
+            <Link  className="px-4 py-2 text-[#3C4242] text-sm" onClick={()=>navigate('/addressform')}>Add New</Link>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
