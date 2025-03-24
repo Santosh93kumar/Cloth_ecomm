@@ -72,7 +72,7 @@ const SignUp = ({ onSignUpSuccess }) => {
             {/* Left Side Image */}
             <div className="hidden md:flex md:w-1/2 h-screen w-full bg-cover bg-center bg-no-repeat">
                 <img
-                    src="https://s3-alpha-sig.figma.com/img/9f91/4df4/eea76dc5260efee6392481867d9947a2?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=KtPxCNwpVlNo2iTkFCoI~0nT~mjBRPqWlPlseSJrs6fjFddPoImnggLwoPdmZGhwFeMh2mAX8tlJRJMVZOscE6-Eh6CJFX~mHygciTXuM8LHdwx8SdxegcE4VrplOwMXBMYXUJdT5infLk57EsxTXPyeITAeTw81fyJp80iK2hWY54b-U4oBPPoSRLZqfptd9tbMEU7FRPyhejaxSXFOHP3JssUd~Yc05ES4BHT4L0cA~dpw8SXLOeFqUErOx5Hd82VGRnIReMYfgizhWeCLktItzg2YWf3qj5i-mBwlFmNbB-xP~QGoCOGl4Ra7K3tlHyUktbWkt5GQpvc88qgZCw__"
+                    src="https://s3-alpha-sig.figma.com/img/9f91/4df4/eea76dc5260efee6392481867d9947a2?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=OgaLFP~C-QJpJ-TJDJOz3DrfflQ8th5-HoWmqjE3XBEa8e4O02D85yyiprN1y8qk9qwKYNSXzE8DWMb6UXI8jVz0ucpI96XJemaXJ2V3karyOpc5-fISaLcnWxIhujvUOt4A5MCNCdI5~q1PWhem2g~Q23GtuNxhzVJQDrdvYHqEcc3FqiTiUzLicJlFvK-lWjgZ74fUlHwkqQ9VzN-XgUDSuFUlFFztCuk0WUywMxK7Iwz8qFqPWn2fc1oLs7k6klH-d3219eAOLGjccBoQ4NMX4A2rLQgbOsmELfdMngcLjtpUELTJ8eZvaWita2zAPqXIMsd9k~lVDJLecrZrnA__"
                     className="h-full w-full object-fit"
                     alt="Background"
                 />
