@@ -154,7 +154,7 @@ export default function ContactDetails() {
           {/* Address Section */}
           <h2 className="text-2xl font-bold mt-10 mb-6 flex justify-between text-[#3C4242]">
             Address
-            <Link  className="px-4 py-2 text-[#3C4242] text-sm" onClick={()=>navigate('/addressform')}>Add New</Link>
+            <Link  className="px-4 py-2 text-[#3C4242] text-sm" onClick={()=>navigate('/home/addressform')}>Add New</Link>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
